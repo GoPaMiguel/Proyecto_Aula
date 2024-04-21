@@ -9,6 +9,7 @@ public class User {
     public String carrera;        
     public String numeroIdentificacion;
     public String apellido;
+    public String genero;
     public  int id;
     public int puntos; 
 }
