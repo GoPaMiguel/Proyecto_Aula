@@ -128,7 +128,7 @@ public class CreateUser extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/Estudiantes/img/imgCreateUser.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(700, 700));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 305));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,22 +178,31 @@ public class CreateUser extends javax.swing.JDialog {
             estudiante.puntos = 0;
 
             if (User.usuarios == null) {
-                User.usuarios = new HashMap<String, User>();
+                User.usuarios = new HashMap<String,User>();
             }
             if (User.usuarios.containsKey(cedula)) {
                 String msj = "Cedula en uso " + cedula;
                 JOptionPane.showMessageDialog(this, msj);
+                limpiar();
             } else {
                 User.usuarios.put(cedula, estudiante);
                 int nUsers = User.usuarios.size();
                 String msj = "Usuario creado con exito! "
                         + "Numero actuales de usuarios: " + nUsers;
-                JOptionPane.showMessageDialog(this, msj);
-
+                JOptionPane.showMessageDialog(this, msj);   
+                limpiar();
             }
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
+    private void limpiar(){
+        fieldName.setText("");
+                fieldCareer.setText("");
+                fieldId.setText("");
+                fieldLastName.setText("");
+                fieldId.setText("");
+                cbGender.setSelectedIndex(0);
+    }
 
     private void fieldCareerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCareerActionPerformed
         // TODO add your handling code here:

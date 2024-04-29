@@ -1,5 +1,5 @@
 package proyectoaula.igu;
-
+import  proyectoaula.igu.Estudiantes.*;
 /**
  *
  * @author migopa
@@ -44,12 +44,22 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenu1.add(btnCrear);
 
         jMenuItem2.setText("Modificar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Eliminar");
         jMenu1.add(jMenuItem3);
 
         jMenuItem1.setText("Buscar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -77,8 +87,19 @@ public class PanelAdmon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
+        CreateUser createUser = new CreateUser(this, rootPaneCheckingEnabled);
+        createUser.setVisible(true);
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ModificarUser modificarUser = new ModificarUser(this, rootPaneCheckingEnabled);
+        modificarUser.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      BuscarUser buscarUser = new BuscarUser(this, rootPaneCheckingEnabled);
+      buscarUser.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
