@@ -88,16 +88,19 @@ public class PanelAdmon extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         CreateUser createUser = new CreateUser(this, rootPaneCheckingEnabled);
+        createUser.setLocationRelativeTo(null);
         createUser.setVisible(true);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ModificarUser modificarUser = new ModificarUser(this, rootPaneCheckingEnabled);
+        modificarUser.setLocationRelativeTo(null);
         modificarUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
       BuscarUser buscarUser = new BuscarUser(this, rootPaneCheckingEnabled);
+      buscarUser.setLocationRelativeTo(null);
       buscarUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
