@@ -184,6 +184,7 @@ public class BuscarUser extends javax.swing.JDialog {
         } else {
             if (User.usuarios.containsKey(cedula)) {
                 User u = User.usuarios.get(cedula);
+                String nn = u.apellido;
                 String puntos = String.valueOf(u.puntos);
                 txtName.setText(u.nombre);
                 txtLastName.setText(u.apellido);

@@ -12,6 +12,7 @@ public class User {
     public String numeroIdentificacion;//
     public String apellido;//
     public String genero;
+    public String contraseña;
     public int puntos;
     public static HashMap<String, User> usuarios;
 }

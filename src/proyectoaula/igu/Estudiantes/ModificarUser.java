@@ -5,7 +5,7 @@
 package proyectoaula.igu.Estudiantes;
 
 import javax.swing.JOptionPane;
-import proyectoaula.data.User;
+import proyectoaula.data.*;
 
 /**
  *
@@ -43,6 +43,8 @@ public class ModificarUser extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         cbGender = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        fieldPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -51,43 +53,43 @@ public class ModificarUser extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Genero:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Nombre:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Carrera:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Apellido:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Cedula:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         fieldId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fieldIdKeyTyped(evt);
             }
         });
-        getContentPane().add(fieldId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
-        getContentPane().add(fieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 90, -1));
-        getContentPane().add(fieldLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 90, -1));
+        getContentPane().add(fieldId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, -1));
+        getContentPane().add(fieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 90, -1));
+        getContentPane().add(fieldLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 90, -1));
 
         fieldCareer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldCareerActionPerformed(evt);
             }
         });
-        getContentPane().add(fieldCareer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 90, -1));
+        getContentPane().add(fieldCareer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 90, -1));
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,7 @@ public class ModificarUser extends javax.swing.JDialog {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 80, -1));
 
         cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Hombre", "Mujer" }));
-        getContentPane().add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 90, -1));
+        getContentPane().add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 90, -1));
 
         jButton3.setText("Confirmar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +118,14 @@ public class ModificarUser extends javax.swing.JDialog {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setText("Contraseña:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        getContentPane().add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 90, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/Estudiantes/img/EditarUserImg.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 400));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -139,7 +147,7 @@ public class ModificarUser extends javax.swing.JDialog {
                 fieldLastname.setText(u.apellido);
                 fieldCareer.setText(u.carrera);
                 cbGender.setSelectedItem(u.genero);
-
+                
             } else {
                 String mjs = "No hay usuario registrados con esa ID " + fieldId.getText();
                 JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
@@ -167,6 +175,7 @@ public class ModificarUser extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         User u = new User();
+        
         String cedula = fieldId.getText();
 
         if (User.usuarios.containsKey(cedula)) {
@@ -181,7 +190,9 @@ public class ModificarUser extends javax.swing.JDialog {
             u.genero = genero;
             u.nombre = name;
             u.numeroIdentificacion = cedula;
+            u.contraseña = fieldPassword.getText();
             User.usuarios.put(u.numeroIdentificacion, u);
+            System.out.println(fieldPassword);
             String msj = "Usuario editado con exito " + cedula;
             JOptionPane.showMessageDialog(this, msj);
             limpiar();
@@ -246,6 +257,7 @@ public class ModificarUser extends javax.swing.JDialog {
     private javax.swing.JTextField fieldId;
     private javax.swing.JTextField fieldLastname;
     private javax.swing.JTextField fieldName;
+    private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -255,5 +267,6 @@ public class ModificarUser extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

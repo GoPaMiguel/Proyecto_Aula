@@ -4,20 +4,20 @@
  */
 package proyectoaula.igu;
 
+import java.util.HashMap;
 import javax.swing.JOptionPane;
-import proyectoaula.data.Admon;
+import proyectoaula.data.*;
 
 /**
  *
  * @author migopa
  */
-public class Login extends javax.swing.JDialog {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
     public Login(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
     }
 
@@ -40,6 +40,7 @@ public class Login extends javax.swing.JDialog {
         FieldPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         btnLogin1 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,7 +91,7 @@ public class Login extends javax.swing.JDialog {
         btnLogin.setBackground(new java.awt.Color(60, 176, 113));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("LOGIN");
+        btnLogin.setText("SING IN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -107,6 +108,16 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        btnRegistrar.setBackground(new java.awt.Color(60, 176, 113));
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("SING UP");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout izquierdaLayout = new javax.swing.GroupLayout(izquierda);
         izquierda.setLayout(izquierdaLayout);
         izquierdaLayout.setHorizontalGroup(
@@ -116,20 +127,19 @@ public class Login extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
             .addGroup(izquierdaLayout.createSequentialGroup()
-                .addGroup(izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
+                        .addComponent(FieldUser)
+                        .addComponent(FieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
                     .addGroup(izquierdaLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(FieldUser)
-                            .addComponent(FieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)))
-                    .addGroup(izquierdaLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(izquierdaLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         izquierdaLayout.setVerticalGroup(
@@ -145,11 +155,12 @@ public class Login extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(btnLogin)
-                .addGap(32, 32, 32)
-                .addComponent(btnLogin1)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(90, 90, 90)
+                .addGroup(izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(btnLogin1)
+                    .addComponent(btnRegistrar))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jPanel1.add(izquierda);
@@ -166,22 +177,30 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        Admon a = new Admon();
 
         String usuario = FieldUser.getText();
         String contraseña = FieldPassword.getText();
 
-        String user = a.getUser();
-        String password = a.getPassword();
+        String userAdmon = "sudo";
+        String passwordAdmon = "sudo";
 
-        if (usuario.equals(user) && contraseña.equals(password)) {
+        if (usuario.equals(userAdmon) && contraseña.equals(passwordAdmon)) {
             this.dispose();
             PanelAdmon pa = new PanelAdmon();
             pa.setLocationRelativeTo(null);
             pa.setVisible(true);
+        } else if (!User.usuarios.isEmpty()) {
+            User u = User.usuarios.get(usuario);
+            String user = u.numeroIdentificacion;
+            String password = u.contraseña;
+            if (usuario.equals(user) && contraseña.equals(password)) {
+                CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
+                cu.setLocationRelativeTo(null);
+                cu.setVisible(true);
+            }
         } else {
-             String mjs = "Credenciales Incorrectas";
-                JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+            String mjs = "Credenciales Incorrectas";
+            JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -193,12 +212,19 @@ public class Login extends javax.swing.JDialog {
         jf.setVisible(true);
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here: 
+        CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
+        cu.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField FieldPassword;
     private javax.swing.JTextField FieldUser;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JPanel derecha;
     private javax.swing.JPanel izquierda;
     private javax.swing.JLabel jLabel1;

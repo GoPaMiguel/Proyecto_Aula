@@ -11,7 +11,7 @@ import proyectoaula.igu.*;
 
 public class Principal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {                        
         JFrame_principal jf = new JFrame_principal();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);

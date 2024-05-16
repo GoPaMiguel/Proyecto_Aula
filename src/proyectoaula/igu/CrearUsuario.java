@@ -2,26 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package proyectoaula.igu.Estudiantes;
+package proyectoaula.igu;
 
-import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import proyectoaula.data.*;
+import proyectoaula.data.User;
 
 /**
  *
  * @author migopa
  */
-public class CreateUser extends javax.swing.JDialog {
+public class CrearUsuario extends javax.swing.JDialog {
 
     /**
-     * Creates new form CreateUser
+     * Creates new form CrearUsuario
      */
-    public CreateUser(java.awt.Frame parent, boolean modal) {
+    public CrearUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -145,6 +142,12 @@ public class CreateUser extends javax.swing.JDialog {
 
     }//GEN-LAST:event_fieldIdActionPerformed
 
+    private void fieldIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldIdKeyTyped
+        char tecla = evt.getKeyChar();
+        if (!Character.isDigit(tecla)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_fieldIdKeyTyped
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
 
@@ -163,7 +166,7 @@ public class CreateUser extends javax.swing.JDialog {
             permiso = true;
         }
         if (permiso) {
-            
+
             String name = fieldName.getText();
             String cedula = fieldId.getText();
             String apellido = fieldLastName.getText();
@@ -171,7 +174,7 @@ public class CreateUser extends javax.swing.JDialog {
             String carrera = fieldCareer.getText();
 
             User estudiante = new User();
-            
+
             estudiante.nombre = name;
             estudiante.apellido = apellido;
             estudiante.numeroIdentificacion = cedula;
@@ -179,8 +182,7 @@ public class CreateUser extends javax.swing.JDialog {
             estudiante.carrera = carrera;
             estudiante.puntos = 0;
             estudiante.contraseña = cedula;
-           
-            
+
             if (User.usuarios == null) {
                 User.usuarios = new HashMap<String, User>();
             }
@@ -194,19 +196,10 @@ public class CreateUser extends javax.swing.JDialog {
                 String msj = "Usuario creado con exito! "
                         + "Numero actuales de usuarios: " + nUsers;
                 JOptionPane.showMessageDialog(this, msj);
-                limpiar();
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
-
-    private void limpiar() {
-        fieldName.setText("");
-        fieldCareer.setText("");
-        fieldId.setText("");
-        fieldLastName.setText("");
-        fieldId.setText("");
-        cbGender.setSelectedIndex(0);
-    }
 
     private void fieldCareerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCareerActionPerformed
         // TODO add your handling code here:
@@ -215,13 +208,6 @@ public class CreateUser extends javax.swing.JDialog {
     private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbGenderActionPerformed
-
-    private void fieldIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldIdKeyTyped
-        char tecla = evt.getKeyChar();
-        if (!Character.isDigit(tecla)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_fieldIdKeyTyped
 
     private boolean validador(JTextField campo, String mensaje) {
 
@@ -235,10 +221,56 @@ public class CreateUser extends javax.swing.JDialog {
         return true;
     }
 
+    private void limpiar() {
+        fieldName.setText("");
+        fieldCareer.setText("");
+        fieldId.setText("");
+        fieldLastName.setText("");
+        fieldId.setText("");
+        cbGender.setSelectedIndex(0);
+    }
+
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                CrearUsuario dialog = new CrearUsuario(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
