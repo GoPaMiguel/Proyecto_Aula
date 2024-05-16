@@ -36,7 +36,7 @@ public class JFrame_principal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
         jPanel1.setForeground(new java.awt.Color(0, 255, 204));
 
-        jButton1.setText("ENTRAR");
+        jButton1.setText("ADMON");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,7 +60,12 @@ public class JFrame_principal extends javax.swing.JFrame {
                 .addContainerGap(154, Short.MAX_VALUE))
         );
 
-        jButton2.setText("BUSCAR");
+        jButton2.setText("ESTUDIANTE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,7 +74,7 @@ public class JFrame_principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jButton2)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +104,15 @@ public class JFrame_principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        Login login = new Login(this, rootPaneCheckingEnabled);
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

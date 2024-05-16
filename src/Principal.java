@@ -7,13 +7,13 @@
  *
  * @author migopa
  */
-
 import proyectoaula.igu.*;
 
 public class Principal {
+
     public static void main(String[] args) {
-        PanelAdmon pa = new PanelAdmon();
-        pa.setLocationRelativeTo(null);
-        pa.setVisible(true);
+        JFrame_principal jf = new JFrame_principal();
+        jf.setLocationRelativeTo(null);
+        jf.setVisible(true);
     }
 }
