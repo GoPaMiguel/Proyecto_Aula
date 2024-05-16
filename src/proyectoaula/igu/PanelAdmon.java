@@ -1,6 +1,8 @@
 package proyectoaula.igu;
-import proyectoaula.igu.Estudiantes.CreateUser;
-import  proyectoaula.igu.Estudiantes.*;
+import proyectoaula.igu.GestionarEstudiantes.EliminarUser;
+import  proyectoaula.igu.GestionarEstudiantes.ModificarUser;
+import proyectoaula.igu.GestionarEstudiantes.BuscarUser;
+import proyectoaula.igu.GestionarEstudiantes.CreateUser;
 /**
  *
  * @author migopa

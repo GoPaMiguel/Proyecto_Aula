@@ -175,6 +175,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FieldUserActionPerformed
 
+    public static String user;
+
+    public static String getUser() {
+        return user;
+    }
+    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
@@ -191,7 +197,7 @@ public class Login extends javax.swing.JFrame {
             pa.setVisible(true);
         } else if (!User.usuarios.isEmpty()) {
             User u = User.usuarios.get(usuario);
-            String user = u.numeroIdentificacion;
+            user = u.numeroIdentificacion;
             String password = u.contraseña;
             if (usuario.equals(user) && contraseña.equals(password)) {
                 CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);

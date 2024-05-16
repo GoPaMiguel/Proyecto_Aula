@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package proyectoaula.igu.Estudiantes;
+package proyectoaula.igu.GestionarEstudiantes;
 
 import javax.swing.JOptionPane;
 import proyectoaula.data.*;
@@ -124,7 +124,7 @@ public class ModificarUser extends javax.swing.JDialog {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
         getContentPane().add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 90, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/Estudiantes/img/EditarUserImg.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionarEstudiantes/img/EditarUserImg.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 360));
 
         pack();

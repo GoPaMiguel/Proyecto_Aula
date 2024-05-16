@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package proyectoaula.igu.Estudiantes;
+package proyectoaula.igu.GestionarEstudiantes;
 
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class CreateUser extends javax.swing.JDialog {
         });
         getContentPane().add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/Estudiantes/img/imgCreateUser.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionarEstudiantes/img/imgCreateUser.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(700, 700));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 300));
