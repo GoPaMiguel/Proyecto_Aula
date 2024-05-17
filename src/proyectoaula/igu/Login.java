@@ -4,9 +4,9 @@
  */
 package proyectoaula.igu;
 
-import java.util.HashMap;
 import javax.swing.JOptionPane;
-import proyectoaula.data.*;
+import proyectoaula.data.User;
+import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *
@@ -180,7 +180,7 @@ public class Login extends javax.swing.JFrame {
     public static String getUser() {
         return user;
     }
-    
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
@@ -195,18 +195,28 @@ public class Login extends javax.swing.JFrame {
             PanelAdmon pa = new PanelAdmon();
             pa.setLocationRelativeTo(null);
             pa.setVisible(true);
-        } else if (!User.usuarios.isEmpty()) {
-            User u = User.usuarios.get(usuario);
-            user = u.numeroIdentificacion;
-            String password = u.contraseña;
-            if (usuario.equals(user) && contraseña.equals(password)) {
-                CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
-                cu.setLocationRelativeTo(null);
-                cu.setVisible(true);
-            }
         } else {
-            String mjs = "Credenciales Incorrectas";
-            JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+            if (User.usuarios != null) {
+                if (!User.usuarios.isEmpty()) {
+                    User u = User.usuarios.get(usuario);
+                    user = u.numeroIdentificacion;
+                    String password = u.contraseña;
+                    if (usuario.equals(user) && contraseña.equals(password)) {
+                        this.dispose();
+
+                        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
+                        me.setLocationRelativeTo(null);
+                        me.setVisible(true);
+                    } else {
+                        String mjs = "Credenciales Incorrectas";
+                        JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                String mjs = "No hay usuarios registrados aún";
+                JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

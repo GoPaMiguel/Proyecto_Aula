@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package proyectoaula.igu.PanelEstudiantes;
+
+import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
 /**
  *
@@ -95,7 +93,10 @@ public class MenuEstudiante extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        this.dispose();
+        PerfilEstudiante estudiante = new PerfilEstudiante();
+        estudiante.setLocationRelativeTo(null);
+        estudiante.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

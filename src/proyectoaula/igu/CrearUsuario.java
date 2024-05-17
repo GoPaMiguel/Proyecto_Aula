@@ -17,9 +17,10 @@ public class CrearUsuario extends javax.swing.JDialog {
 
     /**
      * Creates new form CrearUsuario
+     * @param parent
+     * @param modal
      */
     public CrearUsuario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
     }
 
@@ -122,7 +123,7 @@ public class CrearUsuario extends javax.swing.JDialog {
         });
         getContentPane().add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/Estudiantes/img/imgCreateUser.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionarEstudiantes/img/imgCreateUser.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(700, 700));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 300));
