@@ -1,4 +1,5 @@
 package proyectoaula.igu;
+import proyectoaula.igu.GestionDeResiduos.VentanaResiduos;
 import proyectoaula.igu.GestionarEstudiantes.EliminarUser;
 import  proyectoaula.igu.GestionarEstudiantes.ModificarUser;
 import proyectoaula.igu.GestionarEstudiantes.BuscarUser;
@@ -32,6 +33,7 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        btnIngresar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +74,16 @@ public class PanelAdmon extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Materiales");
+        jMenu2.setText("Residuos");
+
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnIngresar);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Recompensas");
@@ -84,11 +95,11 @@ public class PanelAdmon extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 715, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         pack();
@@ -118,6 +129,13 @@ public class PanelAdmon extends javax.swing.JFrame {
         eliminarUser.setLocationRelativeTo(null);
         eliminarUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        VentanaResiduos v = new VentanaResiduos();
+        v.setLocationRelativeTo(null);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +174,7 @@ public class PanelAdmon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCrear;
+    private javax.swing.JMenuItem btnIngresar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
