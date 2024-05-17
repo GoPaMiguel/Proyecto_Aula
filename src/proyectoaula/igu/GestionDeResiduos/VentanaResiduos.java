@@ -94,6 +94,8 @@ public class VentanaResiduos extends javax.swing.JFrame {
         btnEliminarInterno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(770, 399));
+        setMinimumSize(new java.awt.Dimension(770, 399));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(790, 405));
