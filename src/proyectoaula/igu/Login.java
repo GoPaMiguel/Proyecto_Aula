@@ -189,32 +189,41 @@ public class Login extends javax.swing.JFrame {
 
         String userAdmon = "sudo";
         String passwordAdmon = "sudo";
+        if (FieldPassword.getText().isEmpty() || FieldUser.getText().isEmpty()) {
+            String mjs = "Campo Vacio";
+            JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
 
-        if (usuario.equals(userAdmon) && contraseña.equals(passwordAdmon)) {
-            this.dispose();
-            PanelAdmon pa = new PanelAdmon();
-            pa.setLocationRelativeTo(null);
-            pa.setVisible(true);
         } else {
-            if (User.usuarios != null) {
-                if (!User.usuarios.isEmpty()) {
-                    User u = User.usuarios.get(usuario);
-                    user = u.numeroIdentificacion;
-                    String password = u.contraseña;
-                    if (usuario.equals(user) && contraseña.equals(password)) {
-                        this.dispose();
-
-                        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
-                        me.setLocationRelativeTo(null);
-                        me.setVisible(true);
-                    } else {
-                        String mjs = "Credenciales Incorrectas";
-                        JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
+            if (usuario.equals(userAdmon) && contraseña.equals(passwordAdmon)) {
+                this.dispose();
+                PanelAdmon pa = new PanelAdmon();
+                pa.setLocationRelativeTo(null);
+                pa.setVisible(true);
             } else {
-                String mjs = "No hay usuarios registrados aún";
-                JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+                if (User.usuarios != null) {
+                    if (!User.usuarios.isEmpty()) {
+                        User u = User.usuarios.get(usuario);
+                        if (!User.usuarios.containsKey(usuario)) {
+                            System.out.println("NOOO");
+                        } else {
+                            user = u.numeroIdentificacion;
+                            String password = u.contraseña;
+                            if (usuario.equalsIgnoreCase(user) && contraseña.equalsIgnoreCase(password)) {
+                                MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
+                                me.setLocationRelativeTo(null);
+                                me.setVisible(true);
+                                this.dispose();
+                            } else {
+                                String mjs = "Credenciales Incorrectas";
+                                JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                    }
+                } else {
+                    String mjs = "No hay usuarios registrados aún";
+                    JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
+                }
             }
 
         }
