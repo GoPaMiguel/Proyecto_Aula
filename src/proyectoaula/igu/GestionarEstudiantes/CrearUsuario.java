@@ -21,7 +21,7 @@ public class CrearUsuario extends javax.swing.JFrame {
      */
     public CrearUsuario() {
         initComponents();
-        
+
         User u = new User();
         u.listarUsuarios(tablaUsuarios);
     }
@@ -49,7 +49,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         nombre = new javax.swing.JTextField();
         cbgenero = new javax.swing.JComboBox<>();
         btnCrear = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -86,10 +86,10 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("MODIFICAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -136,7 +136,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbgenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -164,7 +164,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(btnCrear)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnModificar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(69, 69, 69))
@@ -237,17 +237,19 @@ public class CrearUsuario extends javax.swing.JFrame {
         User u = new User();
         String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
         try {
-            u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
-            u.listarUsuarios(tablaUsuarios);
+            if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero)) {
+                u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
+                u.listarUsuarios(tablaUsuarios);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex);
 
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -298,11 +300,11 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel Panel;
     private javax.swing.JTextField apellido;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JTextField carrera;
     private javax.swing.JComboBox<String> cbgenero;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField id;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

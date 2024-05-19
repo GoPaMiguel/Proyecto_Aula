@@ -156,9 +156,6 @@ public class User {
     }
 
     public void secionarUsuario(JTable tabla, JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
-
-        CConexion conexion = new CConexion();
-
         try {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
@@ -172,9 +169,59 @@ public class User {
                 JOptionPane.showMessageDialog(null, "Fila no selecionada");
             }
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());            
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
+
+    public boolean validador(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+
+        if (cedula.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Cedula no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
 
+        if (nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Nombre no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (apellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Apellido no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (carrera.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Carrera no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (genero.getSelectedItem().toString().equalsIgnoreCase("Select")) {
+            JOptionPane.showMessageDialog(null, "Seleciona un genero", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        String sql = "SELECT cedula FROM USUARIOS";
+
+        CConexion conexion = new CConexion();
+
+        Statement st = null;
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int n = 1;
+                if (rs.getString(n).equalsIgnoreCase(cedula.getText())) {
+                    JOptionPane.showMessageDialog(null, "Cedula ya existente", "Validar", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                n++;
+            }
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
 
 }
