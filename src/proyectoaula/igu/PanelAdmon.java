@@ -4,6 +4,7 @@ import proyectoaula.igu.GestionarEstudiantes.EliminarUser;
 import  proyectoaula.igu.GestionarEstudiantes.ModificarUser;
 import proyectoaula.igu.GestionarEstudiantes.BuscarUser;
 import proyectoaula.igu.GestionarEstudiantes.CreateUser;
+import proyectoaula.igu.Gestiondepremios.frmTabladegestion;
 /**
  *
  * @author migopa
@@ -35,6 +36,7 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         btnIngresar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        btnPremios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +89,20 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Recompensas");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        btnPremios.setText("Crear");
+        btnPremios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPremiosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnPremios);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -99,7 +115,7 @@ public class PanelAdmon extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGap(0, 371, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,6 +152,16 @@ public class PanelAdmon extends javax.swing.JFrame {
         v.setLocationRelativeTo(null);
         v.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void btnPremiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPremiosActionPerformed
+        frmTabladegestion view= new frmTabladegestion();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
+    }//GEN-LAST:event_btnPremiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +201,7 @@ public class PanelAdmon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCrear;
     private javax.swing.JMenuItem btnIngresar;
+    private javax.swing.JMenuItem btnPremios;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
