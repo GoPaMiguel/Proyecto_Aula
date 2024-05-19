@@ -18,6 +18,10 @@ public class MenuEstudiante extends javax.swing.JDialog {
         initComponents();
     }
 
+    public MenuEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +76,7 @@ public class MenuEstudiante extends javax.swing.JDialog {
             }
         });
 
-        premios.setText("jMenuItem4");
+        premios.setText("Gestion");
         premios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 premiosActionPerformed(evt);

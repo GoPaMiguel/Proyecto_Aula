@@ -406,10 +406,12 @@ public class frmTabladegestion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnuevodatoActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-//        this.dispose();
-//        MenuEstudiante view= new MenuEstudiante();
-//        view.setLocationRelativeTo(null);
-//        view.setVisible(true);
+        this.dispose();
+        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
+        me.setLocationRelativeTo(null);
+        me.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
