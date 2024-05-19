@@ -1,5 +1,6 @@
 package proyectoaula.data;
 
+import java.awt.HeadlessException;
 import java.beans.Statement.*;
 import java.sql.*;
 import java.sql.Statement.*;
@@ -143,13 +144,35 @@ public class User {
                 datos[3] = rs.getString(4);
                 datos[4] = rs.getString(5);
                 datos[5] = rs.getString(6);
-                datos[6] = rs.getString(8);                
+                datos[6] = rs.getString(8);
 
                 model.addRow(datos);
             }
             tabla.setModel(model);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se pueden mostrar correctamente, error: " + e.toString());
+        }
+
+    }
+
+    public void secionarUsuario(JTable tabla, JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+
+        CConexion conexion = new CConexion();
+
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                id.setText((String) tabla.getValueAt(fila, 0));
+                cedula.setText((String) tabla.getValueAt(fila, 1));
+                nombre.setText((String) tabla.getValueAt(fila, 2));
+                apellido.setText((String) tabla.getValueAt(fila, 3));
+                carrera.setText((String) tabla.getValueAt(fila, 4));
+                genero.setSelectedItem(tabla.getValueAt(fila, 5));
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());            
         }
 
     }

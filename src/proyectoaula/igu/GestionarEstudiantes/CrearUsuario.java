@@ -56,7 +56,6 @@ public class CrearUsuario extends javax.swing.JFrame {
         tablaUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         Panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
@@ -181,6 +180,11 @@ public class CrearUsuario extends javax.swing.JFrame {
                 "ID", "Cedula", "Nombre", "Apellido", "Carrera", "Genero", "Punto"
             }
         ));
+        tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaUsuarios);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -248,6 +252,12 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
+        // TODO add your handling code here:
+        User u = new User();
+        u.secionarUsuario(tablaUsuarios, id, cedula, nombre, apellido, carrera, cbgenero);
+    }//GEN-LAST:event_tablaUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
