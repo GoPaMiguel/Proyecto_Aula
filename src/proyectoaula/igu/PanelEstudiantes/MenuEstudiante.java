@@ -1,5 +1,6 @@
 package proyectoaula.igu.PanelEstudiantes;
 
+import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
 import proyectoaula.igu.Login;
 import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
@@ -114,6 +115,10 @@ public class MenuEstudiante extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        VentanaReciclar reciclar = new VentanaReciclar();
+        reciclar.setLocationRelativeTo(null);
+        reciclar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
