@@ -4,8 +4,8 @@
  */
 package proyectoaula.igu.GestionarEstudiantes;
 
+import proyectoaula.data.User;
 import javax.swing.JOptionPane;
-import proyectoaula.data.*;
 
 /**
  *

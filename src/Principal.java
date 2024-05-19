@@ -7,7 +7,8 @@
  *
  * @author migopa
  */
-import proyectoaula.igu.*;
+
+import proyectoaula.igu.JFrame_principal;
 
 public class Principal {
 

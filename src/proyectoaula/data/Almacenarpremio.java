@@ -1,6 +1,5 @@
 package proyectoaula.data;
 
-import proyectoaula.data.Premio;
 import java.util.ArrayList;
 import java.util.List;
 
