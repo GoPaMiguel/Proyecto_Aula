@@ -1,16 +1,23 @@
 package proyectoaula.data;
-import java.sql.SQLException;
+
+import java.beans.Statement.*;
+import java.sql.*;
+import java.sql.Statement.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 import proyectoaula.database.CConexion;
 import java.sql.CallableStatement;
+import javax.swing.*;
+import javax.swing.JTable;
+import javax.swing.table.*;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author migopa
  */
 public class User {
-    
+
     public int id;
     public String nombre;//
     public String carrera; //       
@@ -76,31 +83,75 @@ public class User {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-    
-    public void crearUsuario(String nombre, String apellido, String cedula, String genero, String carrera) throws SQLException{
+
+    public void crearUsuario(String nombre, String apellido, String cedula, String genero, String carrera) throws SQLException {
         setNombre(nombre);
         setApellido(apellido);
         setNumeroIdentificacion(cedula);
         setCarrera(carrera);
         setGenero(genero);
         setContraseña(cedula);
-        
+
         CConexion conexion = new CConexion();
         String consulta = "insert into Usuarios(nombre, apellido, cedula, carrera, genero, contraseña, puntos) values (?,?,?,?,?,?,?);";
         try {
-           CallableStatement cs = conexion.conecarDB().prepareCall(consulta);
-        cs.setString(1, getNombre());
-        cs.setString(2, getApellido());
-        cs.setString(3, getNumeroIdentificacion());
-        cs.setString(4, getCarrera());
-        cs.setString(5,  getGenero());
-        cs.setString(6, getContraseña());
-        cs.setString(7, String.valueOf(getPuntos()));
-        cs.execute(); 
+            CallableStatement cs = conexion.conecarDB().prepareCall(consulta);
+            cs.setString(1, getNombre());
+            cs.setString(2, getApellido());
+            cs.setString(3, getNumeroIdentificacion());
+            cs.setString(4, getCarrera());
+            cs.setString(5, getGenero());
+            cs.setString(6, getContraseña());
+            cs.setString(7, String.valueOf(getPuntos()));
+            cs.execute();
             JOptionPane.showMessageDialog(null, "Se inserto correctamente");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: "+e);
-        }                
+            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
+        }
     }
-    
+
+    public void listarUsuarios(JTable tabla) {
+        CConexion conexion = new CConexion();
+
+        //Estructura de la tabla
+        DefaultTableModel model = new DefaultTableModel();
+        TableRowSorter<TableModel> ordenarAlfabeto = new TableRowSorter<TableModel>(model);
+        tabla.setRowSorter(ordenarAlfabeto);
+
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");
+        model.addColumn("Cedula");
+        model.addColumn("Carrera");
+        model.addColumn("Genero");
+        model.addColumn("Puntos");
+        tabla.setModel(model);
+
+        //consulta DB
+        String sql = "SELECT * FROM USUARIOS";
+
+        String[] datos = new String[7];
+        Statement st = null;
+
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(8);                
+
+                model.addRow(datos);
+            }
+            tabla.setModel(model);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se pueden mostrar correctamente, error: " + e.toString());
+        }
+
+    }
+
 }

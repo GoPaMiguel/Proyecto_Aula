@@ -21,6 +21,9 @@ public class CrearUsuario extends javax.swing.JFrame {
      */
     public CrearUsuario() {
         initComponents();
+        
+        User u = new User();
+        u.listarUsuarios(tablaUsuarios);
     }
 
     /**
@@ -50,7 +53,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -170,15 +173,15 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de usuarios"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Cedula", "Nombre", "Apellido", "Carrera", "Genero", "Puntos"
+                "ID", "Cedula", "Nombre", "Apellido", "Carrera", "Genero", "Punto"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaUsuarios);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -231,6 +234,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
         try {
             u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
+            u.listarUsuarios(tablaUsuarios);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex);
 
@@ -298,8 +302,8 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTable tablaUsuarios;
     // End of variables declaration//GEN-END:variables
 
 }
