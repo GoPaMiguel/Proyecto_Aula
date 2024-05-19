@@ -27,8 +27,8 @@ public class VentanaResiduos extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public VentanaResiduos() {
-        initComponents();
         this.setLocationRelativeTo(null);
+        initComponents();
         
     }
 
@@ -94,7 +94,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
         btnEliminarInterno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -276,7 +275,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/Iconos/ecology (2).png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/ecology (2).png"))); // NOI18N
 
         botonResiduos.setText("Residuos");
         botonResiduos.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +399,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
         TBListar.setSelectionBackground(new java.awt.Color(0, 153, 153));
         jScrollPane1.setViewportView(TBListar);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/Iconos/ecology (3).png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/ecology (3).png"))); // NOI18N
 
         javax.swing.GroupLayout pnListarLayout = new javax.swing.GroupLayout(pnListar);
         pnListar.setLayout(pnListarLayout);
@@ -472,9 +471,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
         tbModificar.setSelectionBackground(new java.awt.Color(0, 153, 0));
         jScrollPane2.setViewportView(tbModificar);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/Iconos/ecology (5).png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/ecology (5).png"))); // NOI18N
 
-        btnBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/Iconos/search.png"))); // NOI18N
+        btnBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/search.png"))); // NOI18N
         btnBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBusquedaActionPerformed(evt);
@@ -626,7 +625,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
         tbEliminar.setSelectionBackground(new java.awt.Color(0, 153, 153));
         jScrollPane4.setViewportView(tbEliminar);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/Iconos/ecology (4).png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/ecology (4).png"))); // NOI18N
         jLabel13.setText(".");
 
         jLabel14.setText("Seleccione el residuo a eliminar");
