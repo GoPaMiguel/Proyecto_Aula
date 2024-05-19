@@ -1,9 +1,7 @@
 package proyectoaula.igu;
 import proyectoaula.igu.GestionDeResiduos.VentanaResiduos;
-import proyectoaula.igu.GestionarEstudiantes.EliminarUser;
-import  proyectoaula.igu.GestionarEstudiantes.ModificarUser;
-import proyectoaula.igu.GestionarEstudiantes.BuscarUser;
-import proyectoaula.igu.GestionarEstudiantes.CreateUser;
+
+import proyectoaula.igu.Gestiondepremios.frmTabladegestion;
 /**
  *
  * @author migopa
@@ -29,48 +27,22 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnCrear = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnIngresar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        btnPremios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Estudiantes");
 
-        btnCrear.setText("Crear");
+        btnCrear.setText("Gestionar");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
             }
         });
         jMenu1.add(btnCrear);
-
-        jMenuItem2.setText("Modificar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Eliminar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem1.setText("Buscar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -87,6 +59,20 @@ public class PanelAdmon extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Recompensas");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        btnPremios.setText("Crear");
+        btnPremios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPremiosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnPremios);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -99,36 +85,15 @@ public class PanelAdmon extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGap(0, 371, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        CreateUser createUser = new CreateUser(this, rootPaneCheckingEnabled);
-        createUser.setLocationRelativeTo(null);
-        createUser.setVisible(true);
+        CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
     }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        ModificarUser modificarUser = new ModificarUser(this, rootPaneCheckingEnabled);
-        modificarUser.setLocationRelativeTo(null);
-        modificarUser.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-      BuscarUser buscarUser = new BuscarUser(this, rootPaneCheckingEnabled);
-      buscarUser.setLocationRelativeTo(null);
-      buscarUser.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        EliminarUser eliminarUser = new EliminarUser(this, rootPaneCheckingEnabled);
-        eliminarUser.setLocationRelativeTo(null);
-        eliminarUser.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
@@ -136,6 +101,16 @@ public class PanelAdmon extends javax.swing.JFrame {
         v.setLocationRelativeTo(null);
         v.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void btnPremiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPremiosActionPerformed
+        frmTabladegestion view= new frmTabladegestion();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
+    }//GEN-LAST:event_btnPremiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,12 +150,10 @@ public class PanelAdmon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCrear;
     private javax.swing.JMenuItem btnIngresar;
+    private javax.swing.JMenuItem btnPremios;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }

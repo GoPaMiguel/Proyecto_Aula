@@ -1,5 +1,6 @@
 package proyectoaula.igu.PanelEstudiantes;
 
+import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
 import proyectoaula.igu.Login;
 import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
@@ -15,6 +16,10 @@ public class MenuEstudiante extends javax.swing.JDialog {
     public MenuEstudiante(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public MenuEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -33,6 +38,7 @@ public class MenuEstudiante extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        premios = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -64,6 +70,20 @@ public class MenuEstudiante extends javax.swing.JDialog {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Recompensas");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        premios.setText("Gestion");
+        premios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                premiosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(premios);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Salir");
@@ -114,6 +134,10 @@ public class MenuEstudiante extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        VentanaReciclar reciclar = new VentanaReciclar();
+        reciclar.setLocationRelativeTo(null);
+        reciclar.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -135,6 +159,14 @@ public class MenuEstudiante extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void premiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premiosActionPerformed
+        
+    }//GEN-LAST:event_premiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,5 +221,6 @@ public class MenuEstudiante extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem premios;
     // End of variables declaration//GEN-END:variables
 }
