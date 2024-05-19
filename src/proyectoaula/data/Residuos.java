@@ -1,14 +1,22 @@
-
 package proyectoaula.data;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import proyectoaula.database.CConexion;
+
 public class Residuos {
+
+    private int id;
+
     private String codigo;
     private String material;
     private String objeto;
     private int puntos;
-    
-    public Residuos(){
-        
+
+    public Residuos() {
+
     }
 
     public Residuos(String codigo, String material, String objeto, int puntos) {
@@ -16,14 +24,24 @@ public class Residuos {
         this.material = material;
         this.objeto = objeto;
         this.puntos = puntos;
-}@Override
+    }
+
+    @Override
     public String toString() {
-        return "Residuo{" +
-                "codigo='" + codigo + '\'' +
-                ", material='" + material + '\'' +
-                ", objeto='" + objeto + '\'' +
-                ", puntos=" + puntos +
-                '}';
+        return "Residuo{"
+                + "codigo='" + codigo + '\''
+                + ", material='" + material + '\''
+                + ", objeto='" + objeto + '\''
+                + ", puntos=" + puntos
+                + '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCodigo() {
@@ -57,6 +75,29 @@ public class Residuos {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-    
-    
+
+    public void crearResiduo(JTextField codigo, JTextField material, JTextField objeto, JTextField puntos) {
+        CConexion conexion = new CConexion();
+        String sql = "insert into Residuos(codigo, material, objeto, puntos) values (?,?,?,?);";
+        
+        //Cargar las variables
+        setCodigo(codigo.getText());
+        setMaterial(material.getText());
+        setObjeto(objeto.getText());
+        setCodigo(puntos.getText());
+        
+        
+          try {
+            CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+            cs.setString(1, getCodigo());
+            cs.setString(2, getMaterial());
+            cs.setString(3, getObjeto());
+            cs.setString(4, String.valueOf(getPuntos()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se inserto correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
+        }
+    }
+
 }
