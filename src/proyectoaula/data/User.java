@@ -20,6 +20,14 @@ import javax.swing.table.TableRowSorter;
 public class User {
 
     public int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String nombre;//
     public String carrera; //       
     public String numeroIdentificacion;//
@@ -160,9 +168,9 @@ public class User {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
                 id.setText((String) tabla.getValueAt(fila, 0));
-                cedula.setText((String) tabla.getValueAt(fila, 1));
-                nombre.setText((String) tabla.getValueAt(fila, 2));
-                apellido.setText((String) tabla.getValueAt(fila, 3));
+                cedula.setText((String) tabla.getValueAt(fila, 3));
+                nombre.setText((String) tabla.getValueAt(fila, 1));
+                apellido.setText((String) tabla.getValueAt(fila, 2));
                 carrera.setText((String) tabla.getValueAt(fila, 4));
                 genero.setSelectedItem(tabla.getValueAt(fila, 5));
             } else {
@@ -220,8 +228,62 @@ public class User {
             JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
         return true;
+    }
+
+    public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+        setNombre(nombre.getText());
+        setApellido(apellido.getText());
+        setNumeroIdentificacion(cedula.getText());
+        setCarrera(carrera.getText());
+        setGenero(genero.getSelectedItem().toString());
+        int codigo = Integer.parseInt(id.getText());
+        setId(codigo);
+
+        CConexion conexion = new CConexion();
+        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?,  usuarios.cedula = ?, usuarios.carrera = ?, usuarios.genero = ? where Usuarios.id=?;";
+
+        try {
+            CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+            cs.setString(1, getNombre());
+            cs.setString(2, getApellido());
+            cs.setString(3, getNumeroIdentificacion());
+            cs.setString(4, getCarrera());
+            cs.setString(5, getGenero());
+            cs.setInt(6, getId());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se modifico correctamente, error: " + e.toString());
+        }
+    }
+
+    public void limpiarcampos(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+        id.setText("");
+        cedula.setText("");
+        nombre.setText("");
+        apellido.setText("");
+        carrera.setText("");
+        genero.setSelectedIndex(0);
+    }
+
+    public void eliminar(JTextField id) {
+        int codigo = Integer.parseInt(id.getText());
+        if (!id.getText().isEmpty()) {
+            setId(codigo);
+            String sql = "delete from Usuarios where usuarios.id=?;";
+            CConexion conexion = new CConexion();
+            try {
+                CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+                cs.setInt(1, getId());
+                cs.execute();
+                JOptionPane.showMessageDialog(null, "Se elimin correctamente");
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: " + e.toString());
+
+            }
+        } else {
+        }
     }
 
 }

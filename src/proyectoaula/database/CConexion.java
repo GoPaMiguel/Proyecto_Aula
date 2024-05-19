@@ -1,6 +1,7 @@
 package proyectoaula.database;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,9 +31,9 @@ public class CConexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             cx = DriverManager.getConnection(cadena,user,password);
-            System.out.println("Si");
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("No");
+                        JOptionPane.showMessageDialog(null, "No se logro conectar con la base de datos, error: " + e.toString());
+
         }
         
         return cx;

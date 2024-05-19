@@ -21,7 +21,7 @@ public class CrearUsuario extends javax.swing.JFrame {
      */
     public CrearUsuario() {
         initComponents();
-
+        id.setEnabled(false);
         User u = new User();
         u.listarUsuarios(tablaUsuarios);
     }
@@ -50,7 +50,8 @@ public class CrearUsuario extends javax.swing.JFrame {
         cbgenero = new javax.swing.JComboBox<>();
         btnCrear = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
@@ -93,10 +94,17 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("ELIMINAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setText("ELIMINAR");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("LIMPIAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -137,7 +145,8 @@ public class CrearUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbgenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
@@ -166,7 +175,9 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnModificar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(Eliminar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
                 .addGap(69, 69, 69))
         );
 
@@ -201,7 +212,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,7 +233,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -248,18 +259,40 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        User u = new User();
+        u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
+        u.listarUsuarios(tablaUsuarios);
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        User u = new User();
+        u.eliminar(id);
+        u.listarUsuarios(tablaUsuarios);
+        u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
+        if (id.getText().isEmpty()) {
+            btnCrear.setEnabled(true);
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
         // TODO add your handling code here:
         User u = new User();
         u.secionarUsuario(tablaUsuarios, id, cedula, nombre, apellido, carrera, cbgenero);
+        if (!id.getText().isEmpty()) {
+            btnCrear.setEnabled(false);
+        }
     }//GEN-LAST:event_tablaUsuariosMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        User u = new User();
+        u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
+        if (id.getText().isEmpty()) {
+            btnCrear.setEnabled(true);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +330,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
     private javax.swing.JPanel Panel;
     private javax.swing.JTextField apellido;
     private javax.swing.JButton btnCrear;
@@ -305,7 +339,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbgenero;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField id;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
