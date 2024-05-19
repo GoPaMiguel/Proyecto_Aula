@@ -817,6 +817,10 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        
+        Residuos r = new Residuos();
+        r.crearResiduo(txtCodigo, txtMaterial, txtObjeto, txtPuntos);
+        
         if (!validarDatosEnCampo(txtCodigo, "El codigo es requerido")) {
             return;
         }

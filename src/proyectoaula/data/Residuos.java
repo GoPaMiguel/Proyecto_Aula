@@ -84,15 +84,14 @@ public class Residuos {
         setCodigo(codigo.getText());
         setMaterial(material.getText());
         setObjeto(objeto.getText());
-        setCodigo(puntos.getText());
-        
-        
+        setPuntos(Integer.parseInt(puntos.getText()));
+                
           try {
             CallableStatement cs = conexion.conecarDB().prepareCall(sql);
             cs.setString(1, getCodigo());
             cs.setString(2, getMaterial());
             cs.setString(3, getObjeto());
-            cs.setString(4, String.valueOf(getPuntos()));
+            cs.setInt(4, getPuntos());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se inserto correctamente");
         } catch (SQLException e) {
