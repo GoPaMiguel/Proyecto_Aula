@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyectoaula.data.User;
+import proyectoaula.igu.PanelAdmon;
 
 /**
  *
@@ -22,6 +23,8 @@ public class CrearUsuario extends javax.swing.JFrame {
     public CrearUsuario() {
         initComponents();
         id.setEnabled(false);
+        btnModificar.setEnabled(false);
+        Eliminar.setEnabled(false);
         User u = new User();
         u.listarUsuarios(tablaUsuarios);
     }
@@ -52,6 +55,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
@@ -108,6 +112,13 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("VOLVER");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
@@ -146,7 +157,8 @@ public class CrearUsuario extends javax.swing.JFrame {
                                 .addComponent(cbgenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
@@ -178,6 +190,8 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addComponent(Eliminar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
                 .addGap(69, 69, 69))
         );
 
@@ -211,8 +225,8 @@ public class CrearUsuario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,7 +247,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,22 +261,35 @@ public class CrearUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         User u = new User();
         String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
-        try {
-            if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero)) {
+        if (id.getText().isEmpty()) {
+            try {
                 u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
                 u.listarUsuarios(tablaUsuarios);
+            } catch (SQLException ex) {
+                Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex);
-
+        } else {
+            JOptionPane.showMessageDialog(null, "No se Creo correctamente, error: Limpie los campos ");
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:        
-        User u = new User();
-        u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
-        u.listarUsuarios(tablaUsuarios);
+        if (!id.getText().isEmpty()) {
+            btnModificar.setEnabled(true);
+            User u = new User();
+            try {
+                if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero)) {
+                    u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
+                    u.listarUsuarios(tablaUsuarios);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se Modifico correctamente, error: " + e);
+            }
+        } else {
+            btnModificar.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "No se Modifico correctamente, error: Selecione un usuario");
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -282,6 +309,10 @@ public class CrearUsuario extends javax.swing.JFrame {
         u.secionarUsuario(tablaUsuarios, id, cedula, nombre, apellido, carrera, cbgenero);
         if (!id.getText().isEmpty()) {
             btnCrear.setEnabled(false);
+            btnModificar.setEnabled(true);
+            Eliminar.setEnabled(true);
+        } else {
+            btnCrear.setEnabled(true);
         }
     }//GEN-LAST:event_tablaUsuariosMouseClicked
 
@@ -291,8 +322,18 @@ public class CrearUsuario extends javax.swing.JFrame {
         u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
         if (id.getText().isEmpty()) {
             btnCrear.setEnabled(true);
+            btnModificar.setEnabled(false);
+            Eliminar.setEnabled(false);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        PanelAdmon pa = new PanelAdmon();
+        pa.setLocationRelativeTo(null);
+        pa.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,6 +381,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

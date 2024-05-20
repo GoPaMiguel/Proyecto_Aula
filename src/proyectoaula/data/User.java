@@ -277,7 +277,7 @@ public class User {
                 CallableStatement cs = conexion.conecarDB().prepareCall(sql);
                 cs.setInt(1, getId());
                 cs.execute();
-                JOptionPane.showMessageDialog(null, "Se elimin correctamente");
+                JOptionPane.showMessageDialog(null, "Se elimino correctamente");
             } catch (HeadlessException | SQLException e) {
                 JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: " + e.toString());
 

@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -69,6 +70,46 @@ public class Premio {
 
     public void setCantidaddepuntos(String cantidaddepuntos) {
         this.cantidaddepuntos = cantidaddepuntos;
+    }
+    
+    public boolean validador(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
+
+        if (codigo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Codigo no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Nombre no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Puntos no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+       
+        String sql = "SELECT codigo FROM Residuos";
+
+        CConexion conexion = new CConexion();
+
+        Statement st = null;
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int n = 1;
+                if (rs.getString(n).equalsIgnoreCase(codigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "Codigo ya existente", "Validar", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                n++;
+            }
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 
     public void crearPremio(JTextField codigo, JTextField nombre, JTextField puntos) {

@@ -54,7 +54,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         btnmodificar = new javax.swing.JButton();
         btninsertar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
-        btneliminartodo = new javax.swing.JButton();
+        limpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -148,14 +148,14 @@ public class frmTabladegestion extends javax.swing.JFrame {
             }
         });
 
-        btneliminartodo.setBackground(new java.awt.Color(0, 153, 102));
-        btneliminartodo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btneliminartodo.setForeground(new java.awt.Color(255, 255, 255));
-        btneliminartodo.setText("LIMPIAR");
-        btneliminartodo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btneliminartodo.addActionListener(new java.awt.event.ActionListener() {
+        limpiar.setBackground(new java.awt.Color(0, 153, 102));
+        limpiar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        limpiar.setText("LIMPIAR");
+        limpiar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminartodoActionPerformed(evt);
+                limpiarActionPerformed(evt);
             }
         });
 
@@ -205,7 +205,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(btneliminartodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +219,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btneliminartodo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
@@ -323,6 +323,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         Premio p = new Premio();
         p.crearPremio(codigo, nombre, puntos);
         p.listar(tabla);
+        
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -337,9 +338,10 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btneliminarActionPerformed
 
-    private void btneliminartodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminartodoActionPerformed
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_btneliminartodoActionPerformed
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:  
+        
+    }//GEN-LAST:event_limpiarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         // TODO add your handling code here:   
@@ -411,7 +413,6 @@ public class frmTabladegestion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton btneliminar;
-    private javax.swing.JButton btneliminartodo;
     private javax.swing.JButton btninsertar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JTextField codigo;
@@ -428,6 +429,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton limpiar;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField puntos;
     private javax.swing.JTable tabla;
