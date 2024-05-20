@@ -1,5 +1,6 @@
 package proyectoaula.data;
 
+import java.awt.HeadlessException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -129,4 +130,21 @@ public class Premio {
 
     }
 
+    public void selecionarPremio(JTable tabla, JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                id.setText((String) tabla.getValueAt(fila, 0));
+                codigo.setText((String) tabla.getValueAt(fila, 1));
+                nombre.setText((String) tabla.getValueAt(fila, 2));
+                puntos.setText((String) tabla.getValueAt(fila, 3));
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
+
+    
 }

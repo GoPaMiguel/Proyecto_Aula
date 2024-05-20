@@ -99,6 +99,11 @@ public class frmTabladegestion extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -356,6 +361,12 @@ public class frmTabladegestion extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        Premio p = new Premio();
+        p.selecionarPremio(tabla, id, codigo, nombre, puntos);
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments
