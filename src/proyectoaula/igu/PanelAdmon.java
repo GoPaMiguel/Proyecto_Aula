@@ -1,4 +1,5 @@
 package proyectoaula.igu;
+import proyectoaula.igu.GestionarEstudiantes.*;
 import proyectoaula.igu.GestionDeResiduos.VentanaResiduos;
 
 import proyectoaula.igu.Gestiondepremios.frmTabladegestion;
@@ -92,7 +93,9 @@ public class PanelAdmon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
+        CrearUsuario crearUsuario = new CrearUsuario();
+        crearUsuario.setLocationRelativeTo(null);
+        crearUsuario.setVisible(true);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

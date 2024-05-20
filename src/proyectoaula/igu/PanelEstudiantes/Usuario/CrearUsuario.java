@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package proyectoaula.igu;
+package proyectoaula.igu.PanelEstudiantes.Usuario;
 
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -51,7 +51,6 @@ public class CrearUsuario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(800, 520));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

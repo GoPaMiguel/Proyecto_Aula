@@ -4,6 +4,7 @@
  */
 package proyectoaula.igu;
 
+import proyectoaula.igu.PanelEstudiantes.Usuario.CrearUsuario;
 import javax.swing.JOptionPane;
 import proyectoaula.data.User;
 import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
