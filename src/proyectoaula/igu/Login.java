@@ -112,6 +112,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin1.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/previous.png"))); // NOI18N
         btnLogin1.setText("ATRAS");
+        btnLogin1.setFocusPainted(false);
         btnLogin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogin1ActionPerformed(evt);

@@ -238,6 +238,7 @@
                   <Image iconType="3" name="/proyectoaula/igu/GestionDeResiduos/Iconos/previous.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ATRAS"/>
+                <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogin1ActionPerformed"/>

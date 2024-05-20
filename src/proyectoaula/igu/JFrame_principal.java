@@ -42,6 +42,7 @@ public class JFrame_principal extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 153, 51));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ESTUDIANTE");
+        jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -51,6 +52,8 @@ public class JFrame_principal extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 153, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("ADMON");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
