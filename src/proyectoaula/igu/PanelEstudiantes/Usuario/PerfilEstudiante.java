@@ -16,13 +16,13 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      */
     public PerfilEstudiante() {
         initComponents();        
-        String id = Login.user;
-        User u = User.usuarios.get(id);
-        name.setText(u.nombre);
-        lastName.setText(u.apellido);
-        ID.setText(u.numeroIdentificacion);
-        career.setText(u.carrera);
-        password.setText(u.contraseña);      
+        int id = Login.getUser();
+        
+        //name.setText(u.nombre);
+        //lastName.setText(u.apellido);
+        //ID.setText(u.numeroIdentificacion);
+        //career.setText(u.carrera);
+        //password.setText(u.contraseña);      
     }
 
     /**

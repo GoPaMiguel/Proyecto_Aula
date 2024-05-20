@@ -41,7 +41,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         FieldPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        btnLogin1 = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -107,15 +107,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin1.setBackground(new java.awt.Color(60, 176, 113));
-        btnLogin1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/previous.png"))); // NOI18N
-        btnLogin1.setText("ATRAS");
-        btnLogin1.setFocusPainted(false);
-        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setBackground(new java.awt.Color(60, 176, 113));
+        btnAtras.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/previous.png"))); // NOI18N
+        btnAtras.setText("ATRAS");
+        btnAtras.setFocusPainted(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogin1ActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
@@ -150,14 +150,14 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, izquierdaLayout.createSequentialGroup()
-                        .addComponent(btnLogin1)
+                        .addComponent(btnAtras)
                         .addGap(23, 23, 23))))
         );
         izquierdaLayout.setVerticalGroup(
             izquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(izquierdaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnLogin1)
+                .addComponent(btnAtras)
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -196,66 +196,30 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FieldUserActionPerformed
 
-    public static String user;
+    public static int id;
 
-    public static String getUser() {
-        return user;
+    public static int getUser() {
+        return id;
     }
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        String usuario = FieldUser.getText();
-        String contraseña = FieldPassword.getText();
-
-        String userAdmon = "sudo";
-        String passwordAdmon = "sudo";
-        if (FieldPassword.getText().isEmpty() || FieldUser.getText().isEmpty()) {
-            String mjs = "Campo Vacio";
-            JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
-
-        } else {
-            if (usuario.equals(userAdmon) && contraseña.equals(passwordAdmon)) {
-                this.dispose();
-                PanelAdmon pa = new PanelAdmon();
-                pa.setLocationRelativeTo(null);
-                pa.setVisible(true);
-            } else {
-                if (User.usuarios != null) {
-                    if (!User.usuarios.isEmpty()) {
-                        User u = User.usuarios.get(usuario);
-                        if (!User.usuarios.containsKey(usuario)) {
-                            System.out.println("NOOO");
-                        } else {
-                            user = u.numeroIdentificacion;
-                            String password = u.contraseña;
-                            if (usuario.equalsIgnoreCase(user) && contraseña.equalsIgnoreCase(password)) {
-                                MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
-                                me.setLocationRelativeTo(null);
-                                me.setVisible(true);
-                                this.dispose();
-                            } else {
-                                String mjs = "Credenciales Incorrectas";
-                                JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
-                        
-                    }
-                } else {
-                    String mjs = "No hay usuarios registrados aún";
-                    JOptionPane.showMessageDialog(this, mjs, "ERORR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
+        User u = new User();
+        if (u.validarUsuario(FieldUser) && u.validarcontraseña(FieldPassword)) {
+            //MenuEstudiante me = new MenuEstudiante();
+            //me.setLocationRelativeTo(null);
+            //me.setVisible(true);
+            System.out.println("Credenciales correctas!!");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
         this.dispose();
         JFrame_principal jf = new JFrame_principal();
         jf.setLocationRelativeTo(null);
         jf.setVisible(true);
-    }//GEN-LAST:event_btnLogin1ActionPerformed
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here: 
@@ -268,8 +232,8 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField FieldPassword;
     private javax.swing.JTextField FieldUser;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JPanel derecha;
     private javax.swing.JPanel izquierda;
