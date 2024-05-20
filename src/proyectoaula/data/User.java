@@ -115,7 +115,7 @@ public class User {
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se inserto correctamente");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
+            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e.toString());
         }
     }
 
@@ -181,7 +181,7 @@ public class User {
         }
     }
 
-    public boolean validador(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+    public boolean validador(JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
 
         if (cedula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo Cedula no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
@@ -208,11 +208,10 @@ public class User {
             return false;
         }
 
-        
         return true;
     }
 
-    public boolean validarCrear(JTextField id, JTextField cedula ) {
+    public boolean validarCrear(JTextField cedula) {
         String sql = "SELECT cedula FROM USUARIOS";
         CConexion conexion = new CConexion();
 
@@ -232,7 +231,7 @@ public class User {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
-        }        
+        }
     }
 
     public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
