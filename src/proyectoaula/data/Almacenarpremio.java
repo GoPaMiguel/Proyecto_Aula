@@ -16,7 +16,7 @@ public class Almacenarpremio {
     public boolean insertarPremio ( Premio Premio) {
         boolean exito = true;
         for (var p : premios){
-            if (p.getId().equals(Premio.getId())){
+            if (p.getCodigo().equals(Premio.getCodigo())){
                 return false;
             } else {
             }
@@ -26,7 +26,7 @@ public class Almacenarpremio {
     }
     
     public void eliminarPremio(String codigo) {
-        premios.removeIf(premio -> premio.getId().equals(codigo));
+        premios.removeIf(premio -> premio.getCodigo().equals(codigo));
     }
     
     public void modificarPremio(Premio premio, String nuevonombre, String nuevospuntos){
@@ -41,7 +41,7 @@ public class Almacenarpremio {
         
     public Premio buscarPremio(String id){
         return premios.stream()
-                .filter(residuo -> residuo.getId().equals(id))
+                .filter(residuo -> residuo.getCodigo().equals(id))
                 .findFirst()
                 .orElse(null);
     }
