@@ -208,8 +208,12 @@ public class User {
             return false;
         }
 
-        String sql = "SELECT cedula FROM USUARIOS";
+        
+        return true;
+    }
 
+    public boolean validarCrear(JTextField id, JTextField cedula ) {
+        String sql = "SELECT cedula FROM USUARIOS";
         CConexion conexion = new CConexion();
 
         Statement st = null;
@@ -224,11 +228,11 @@ public class User {
                 }
                 n++;
             }
+            return true;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
-        }
-        return true;
+        }        
     }
 
     public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {

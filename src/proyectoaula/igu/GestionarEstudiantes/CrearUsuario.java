@@ -265,16 +265,19 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         User u = new User();
-        String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
-        if (id.getText().isEmpty()) {
-            try {
-                u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
-                u.listarUsuarios(tablaUsuarios);
-            } catch (SQLException ex) {
-                Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero) && u.validarCrear(id, cedula)) {
+            String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
+            if (id.getText().isEmpty()) {
+                try {
+                    u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), generoSelecionado, carrera.getText());
+                    u.listarUsuarios(tablaUsuarios);
+                    u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se Creo correctamente, error: Limpie los campos ");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No se Creo correctamente, error: Limpie los campos ");
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
@@ -286,6 +289,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             try {
                 if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero)) {
                     u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
+                    u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
                     u.listarUsuarios(tablaUsuarios);
                 }
             } catch (Exception e) {

@@ -348,7 +348,8 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:  
-
+        Premio p = new Premio();
+        
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -381,6 +382,13 @@ public class frmTabladegestion extends javax.swing.JFrame {
         // TODO add your handling code here:
         Premio p = new Premio();
         p.selecionarPremio(tabla, id, codigo, nombre, puntos);
+        if (!id.getText().isEmpty()) {
+            btninsertar.setEnabled(false);
+            btnmodificar.setEnabled(true);
+            btneliminar.setEnabled(true);
+        } else {
+            btninsertar.setEnabled(true);            
+        }
     }//GEN-LAST:event_tablaMouseClicked
 
     private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped
