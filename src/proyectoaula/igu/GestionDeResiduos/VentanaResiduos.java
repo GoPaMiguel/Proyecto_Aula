@@ -355,7 +355,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
-        pnCambiante.addTab("tab1", pnRegistrar);
+        pnCambiante.addTab("", pnRegistrar);
 
         pnListar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -401,7 +401,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnListarLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -419,7 +419,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        pnCambiante.addTab("tab2", pnListar);
+        pnCambiante.addTab("", pnListar);
 
         pnModificar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -593,7 +593,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        pnCambiante.addTab("tab3", pnModificar);
+        pnCambiante.addTab("", pnModificar);
 
         pnEliminar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -701,7 +701,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                 .addGap(84, 84, 84))
         );
 
-        pnCambiante.addTab("tab4", pnEliminar);
+        pnCambiante.addTab("", pnEliminar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
