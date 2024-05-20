@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import proyectoaula.data.Premio;
 import proyectoaula.data.Residuos;
 import proyectoaula.igu.PanelAdmon;
-import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *

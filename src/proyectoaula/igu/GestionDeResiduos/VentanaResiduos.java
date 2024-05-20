@@ -16,7 +16,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.RowFilter;
 import proyectoaula.igu.PanelAdmon;
-import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 public class VentanaResiduos extends javax.swing.JFrame {
 
