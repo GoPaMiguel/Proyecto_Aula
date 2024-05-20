@@ -3,7 +3,6 @@ package proyectoaula.igu.PanelEstudiantes.Usuario;
 import javax.swing.JOptionPane;
 import proyectoaula.data.User;
 import proyectoaula.igu.Login;
-import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *
@@ -16,13 +15,13 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      */
     public PerfilEstudiante() {
         initComponents();        
-        String id = Login.user;
-        User u = User.usuarios.get(id);
-        name.setText(u.nombre);
-        lastName.setText(u.apellido);
-        ID.setText(u.numeroIdentificacion);
-        career.setText(u.carrera);
-        password.setText(u.contraseña);      
+        int id = Login.getUser();
+        
+        //name.setText(u.nombre);
+        //lastName.setText(u.apellido);
+        //ID.setText(u.numeroIdentificacion);
+        //career.setText(u.carrera);
+        //password.setText(u.contraseña);      
     }
 
     /**
@@ -288,17 +287,17 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         String msj = "Usuario editado con exito " + ID.getText();
         JOptionPane.showMessageDialog(this, msj);
         this.dispose();
-        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
+        /*MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
         me.setLocationRelativeTo(null);
-        me.setVisible(true);
+        me.setVisible(true);*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
+        /*MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
         me.setLocationRelativeTo(null);
         me.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed

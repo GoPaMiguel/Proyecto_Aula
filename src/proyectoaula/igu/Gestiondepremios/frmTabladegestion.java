@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import proyectoaula.data.Premio;
 import proyectoaula.data.Residuos;
 import proyectoaula.igu.PanelAdmon;
-import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *
@@ -406,10 +405,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         boolean numero = key >= 48 && key <= 57;
         if (!numero) {
             evt.consume();
-        }
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        }        
     }//GEN-LAST:event_puntosKeyTyped
 
     private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped

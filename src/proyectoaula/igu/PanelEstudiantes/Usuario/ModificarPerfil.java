@@ -20,13 +20,13 @@ public class ModificarPerfil extends javax.swing.JDialog {
     public ModificarPerfil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        String id = Login.user;
-        User u = User.usuarios.get(id);
-        name.setText(u.nombre);
-        lastName.setText(u.apellido);
-        ID.setText(u.numeroIdentificacion);
-        career.setText(u.carrera);
-        password.setText(u.contraseña);
+       // String id = Login.user;
+        //User u = User.usuarios.get(id);
+        //name.setText(u.nombre);
+        //lastName.setText(u.apellido);
+        //ID.setText(u.numeroIdentificacion);
+        //career.setText(u.carrera);
+        //password.setText(u.contraseña);
 
     }
 

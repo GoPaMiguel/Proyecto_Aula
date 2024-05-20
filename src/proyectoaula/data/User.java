@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.JTable;
 import javax.swing.table.*;
 import javax.swing.table.TableRowSorter;
+import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *
@@ -115,7 +116,7 @@ public class User {
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se inserto correctamente");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
+            JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e.toString());
         }
     }
 
@@ -181,7 +182,7 @@ public class User {
         }
     }
 
-    public boolean validador(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+    public boolean validador(JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
 
         if (cedula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo Cedula no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
@@ -208,11 +209,10 @@ public class User {
             return false;
         }
 
-        
         return true;
     }
 
-    public boolean validarCrear(JTextField id, JTextField cedula ) {
+    public boolean validarCrear(JTextField cedula) {
         String sql = "SELECT cedula FROM USUARIOS";
         CConexion conexion = new CConexion();
 
@@ -232,7 +232,7 @@ public class User {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
-        }        
+        }
     }
 
     public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
@@ -288,6 +288,59 @@ public class User {
             }
         } else {
         }
+    }
+
+    public boolean validarUsuario(JTextField usuario) {
+        CConexion cx = new CConexion();
+        if (usuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campos vacios, por favor llene todos los campos");
+            return false;
+        } else {
+            String sql = "SELECT cedula, id FROM USUARIOS;";
+            Statement st = null;
+            try {
+                st = (Statement) cx.conecarDB().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                   rs.getString("cedula");
+                    if (rs.getString("cedula").equals(usuario.getText())) {
+                        setId(rs.getInt("id"));
+                        return true;
+                    }
+                }
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "Usuario incorrecto");
+                return false;
+            }
+        }
+        return false;
+    }
+    public boolean validarcontraseña(JTextField contraseña) {
+        CConexion cx = new CConexion();
+        if (contraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese una contraseña");
+            return false;
+        } else {
+            String sql = "SELECT cedula FROM USUARIOS";
+            Statement st = null;
+            try {
+                st = (Statement) cx.conecarDB().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    int n = 1;
+                    if (rs.getString(n).equals(contraseña.getText())) {
+                        System.out.println("SII");
+                        return true;
+                    } else {
+                        n++;
+                    }
+                }
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "Cntraseña incorrecta");
+                return false;
+            }
+        }
+        return false;
     }
 
 }
