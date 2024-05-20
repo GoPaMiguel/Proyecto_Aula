@@ -1,7 +1,8 @@
 package proyectoaula.data;
 
 public class Premio {
-    private String id;
+    int id;
+    private String codigo;
     private String nombredelpremio;
     private String cantidaddepuntos;
     
@@ -9,26 +10,26 @@ public class Premio {
         
     }
     
-    public Premio (String id, String nombredelpremio, String cantidaddepuntos) {
-        this.id = id;
+    public Premio (String codigo, String nombredelpremio, String cantidaddepuntos) {
+        this.codigo = codigo;
         this.nombredelpremio= nombredelpremio;
         this.cantidaddepuntos= cantidaddepuntos;
     }@Override
       
         public String toString() {
             return "Premio{" +
-                    "id='" + id + '\'' +
+                    "codigo='" + codigo + '\'' +
                     ", nombredelpremio='" + nombredelpremio + '\'' +
                     ", cantidaddepuntos='" + cantidaddepuntos + '\''
                     ;
         }
 
-    public String getId() {
-        return id;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCodigo(String id) {
+        this.codigo = id;
     }
 
     public String getNombredelpremio() {
