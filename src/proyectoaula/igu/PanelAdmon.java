@@ -122,6 +122,8 @@ public class PanelAdmon extends javax.swing.JFrame {
                 .addGap(63, 63, 63))
         );
 
+        jButton1.setBackground(new java.awt.Color(64, 145, 108));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/previous.png"))); // NOI18N
         jButton1.setText("ATRAS");
         jButton1.setBorderPainted(false);
