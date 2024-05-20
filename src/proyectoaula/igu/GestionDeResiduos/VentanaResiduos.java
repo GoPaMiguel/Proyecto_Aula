@@ -30,6 +30,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         initComponents();
         ID.setEnabled(false);
+        id.setEnabled(false);
     }
 
     /**
@@ -93,6 +94,8 @@ public class VentanaResiduos extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         btnEliminarInterno = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -602,14 +605,14 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Material", "Objeto", "Puntos"
+                "ID", "Codigo", "Material", "Objeto", "Puntos"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                true, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -622,7 +625,15 @@ public class VentanaResiduos extends javax.swing.JFrame {
         });
         tbEliminar.setGridColor(new java.awt.Color(255, 255, 255));
         tbEliminar.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tbEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEliminarMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tbEliminar);
+        if (tbEliminar.getColumnModel().getColumnCount() > 0) {
+            tbEliminar.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/ecology (4).png"))); // NOI18N
         jLabel13.setText(".");
@@ -636,6 +647,14 @@ public class VentanaResiduos extends javax.swing.JFrame {
             }
         });
 
+        jLabel22.setText("ID:");
+
+        id.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                idMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnEliminarLayout = new javax.swing.GroupLayout(pnEliminar);
         pnEliminar.setLayout(pnEliminarLayout);
         pnEliminarLayout.setHorizontalGroup(
@@ -646,29 +665,37 @@ public class VentanaResiduos extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnEliminarLayout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel22)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98)
                                 .addComponent(btnEliminarInterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnEliminarLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36)
+                        .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         pnEliminarLayout.setVerticalGroup(
             pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnEliminarLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnEliminarLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(btnEliminarInterno))
+                        .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarInterno)
+                            .addGroup(pnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel22)
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(84, 84, 84))
@@ -729,10 +756,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        Residuos r = new Residuos();
+        r.listar(tbEliminar);
         pnCambiante.setSelectedIndex(3);
-        actualizarTablaResiduos();
-        actualizarTablaResiduos2();
-        actualizarTablaResiduos3();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -743,19 +769,17 @@ public class VentanaResiduos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInternoActionPerformed
-        // TODO add your handling code here:
-        eliminarFilaSeleccionada();
-        actualizarTablaResiduos();
-        actualizarTablaResiduos2();
-        actualizarTablaResiduos3();
+        // TODO add your handling code here:        
+        Residuos r = new Residuos();  
+        r.eliminar(id);
+        r.listar(tbEliminar);
     }//GEN-LAST:event_btnEliminarInternoActionPerformed
 
     private void btnModificarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarInternoActionPerformed
         // TODO add your handling code here:
-       Residuos r = new Residuos();
-       r.modificarResiduosAdmin(ID, Material, Objeto, puntos);
-       r.listar(tbModificar);
-
+        Residuos r = new Residuos();
+        r.modificarResiduosAdmin(ID, Material, Objeto, puntos);
+        r.listar(tbModificar);
     }//GEN-LAST:event_btnModificarInternoActionPerformed
 
     private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped
@@ -853,6 +877,16 @@ public class VentanaResiduos extends javax.swing.JFrame {
         Residuos r = new Residuos();
         r.secionarResiduo(tbModificar, Material, Objeto, puntos, ID);
     }//GEN-LAST:event_tbModificarMouseClicked
+
+    private void idMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMouseClicked
+
+    private void tbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEliminarMouseClicked
+        // TODO add your handling code here:
+        Residuos r = new Residuos();
+        r.seleccionarEliminar(tbEliminar, id);
+    }//GEN-LAST:event_tbEliminarMouseClicked
     public void filtro() {
         filtro = txtBusqueda.getText();
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtBusqueda.getText(), 0));
@@ -1026,6 +1060,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificarInterno;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1040,6 +1075,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

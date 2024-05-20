@@ -87,14 +87,14 @@ public class Residuos {
     public void crearResiduo(JTextField codigo, JTextField material, JTextField objeto, JTextField puntos) {
         CConexion conexion = new CConexion();
         String sql = "insert into Residuos(codigo, material, objeto, puntos) values (?,?,?,?);";
-        
+
         //Cargar las variables
         setCodigo(codigo.getText());
         setMaterial(material.getText());
         setObjeto(objeto.getText());
         setPuntos(Integer.parseInt(puntos.getText()));
-                
-          try {
+
+        try {
             CallableStatement cs = conexion.conecarDB().prepareCall(sql);
             cs.setString(1, getCodigo());
             cs.setString(2, getMaterial());
@@ -106,8 +106,8 @@ public class Residuos {
             JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
         }
     }
-    
-     public void listar(JTable tabla) {
+
+    public void listar(JTable tabla) {
         CConexion conexion = new CConexion();
 
         //Estructura de la tabla
@@ -120,7 +120,7 @@ public class Residuos {
         model.addColumn("Material");
         model.addColumn("Objeto");
         model.addColumn("Puntos");
-        
+
         tabla.setModel(model);
 
         //consulta DB
@@ -136,8 +136,8 @@ public class Residuos {
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);                
-                datos[4] = rs.getString(5);                
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
                 model.addRow(datos);
             }
             tabla.setModel(model);
@@ -146,15 +146,15 @@ public class Residuos {
         }
 
     }
-     
-      public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id) {
+
+    public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id) {
         try {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
                 id.setText((String) tabla.getValueAt(fila, 0));
                 materia.setText((String) tabla.getValueAt(fila, 2));
                 objeto.setText((String) tabla.getValueAt(fila, 3));
-                puntos.setText((String) tabla.getValueAt(fila, 4));               
+                puntos.setText((String) tabla.getValueAt(fila, 4));
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no selecionada");
             }
@@ -162,14 +162,13 @@ public class Residuos {
             JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
         }
     }
-      
-      public void modificarResiduosAdmin(JTextField id, JTextField material, JTextField objeto, JTextField puntos) {
+
+    public void modificarResiduosAdmin(JTextField id, JTextField material, JTextField objeto, JTextField puntos) {
         int punto = Integer.parseInt(puntos.getText());
         int codigoId = Integer.parseInt(id.getText());
-        
-        
-        setMaterial(material.getText());       
-        setObjeto(objeto.getText());       
+
+        setMaterial(material.getText());
+        setObjeto(objeto.getText());
         setId(codigoId);
         setPuntos(punto);
 
@@ -180,7 +179,7 @@ public class Residuos {
             CallableStatement cs = conexion.conecarDB().prepareCall(sql);
             cs.setString(1, getMaterial());
             cs.setString(2, getObjeto());
-            cs.setInt(3, getPuntos());         
+            cs.setInt(3, getPuntos());
             cs.setInt(4, getId());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se modifico correctamente");
@@ -188,5 +187,35 @@ public class Residuos {
             JOptionPane.showMessageDialog(null, "No se modifico correctamente, error: " + e.toString());
         }
     }
-      
+
+    public void seleccionarEliminar(JTable tableEleminar, JTextField id) {
+        int fila = tableEleminar.getSelectedRow();
+        if (fila >= 0) {
+            id.setText(String.valueOf(tableEleminar.getValueAt(fila, 0)));
+        } else {
+            JOptionPane.showMessageDialog(null, "Fila no selecionada");
+        }
+    }
+
+    public void eliminar(JTextField id) {
+
+        int codigoId = Integer.parseInt(id.getText());
+        if (!id.getText().isEmpty()) {
+            setId(codigoId);
+            String sql = "delete from Residuos where residuos.id=?;";
+            CConexion conexion = new CConexion();
+            try {
+                CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+                cs.setInt(1, getId());
+                cs.execute();
+                JOptionPane.showMessageDialog(null, "Se elimino correctamente");
+                id.setText("");
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: " + e.toString());
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleciona un resudio para eliminar");
+        }
+    }
 }
