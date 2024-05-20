@@ -752,10 +752,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
     private void btnModificarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarInternoActionPerformed
         // TODO add your handling code here:
-        modificarFila();
-        actualizarTablaResiduos();
-        actualizarTablaResiduos2();
-        actualizarTablaResiduos3();
+       Residuos r = new Residuos();
+       r.modificarResiduosAdmin(ID, Material, Objeto, puntos);
+       r.listar(tbModificar);
 
     }//GEN-LAST:event_btnModificarInternoActionPerformed
 

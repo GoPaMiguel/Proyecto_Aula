@@ -153,7 +153,7 @@ public class Residuos {
             if (fila >= 0) {
                 id.setText((String) tabla.getValueAt(fila, 0));
                 materia.setText((String) tabla.getValueAt(fila, 2));
-                objeto.setText((String) tabla.getValueAt(fila, 1));
+                objeto.setText((String) tabla.getValueAt(fila, 3));
                 puntos.setText((String) tabla.getValueAt(fila, 4));               
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no selecionada");
@@ -162,4 +162,31 @@ public class Residuos {
             JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
         }
     }
+      
+      public void modificarResiduosAdmin(JTextField id, JTextField material, JTextField objeto, JTextField puntos) {
+        int punto = Integer.parseInt(puntos.getText());
+        int codigoId = Integer.parseInt(id.getText());
+        
+        
+        setMaterial(material.getText());       
+        setObjeto(objeto.getText());       
+        setId(codigoId);
+        setPuntos(punto);
+
+        CConexion conexion = new CConexion();
+        String sql = "update Residuos set residuos.material = ?, residuos.objeto = ?, residuos.puntos = ? where residuos.id=?;";
+
+        try {
+            CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+            cs.setString(1, getMaterial());
+            cs.setString(2, getObjeto());
+            cs.setInt(3, getPuntos());         
+            cs.setInt(4, getId());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se modifico correctamente, error: " + e.toString());
+        }
+    }
+      
 }
