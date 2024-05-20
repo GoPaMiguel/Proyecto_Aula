@@ -1,9 +1,15 @@
 package proyectoaula.data;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import proyectoaula.database.CConexion;
 
 public class Residuos {
@@ -97,6 +103,44 @@ public class Residuos {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + e);
         }
+    }
+    
+     public void listar(JTable tabla) {
+        CConexion conexion = new CConexion();
+
+        //Estructura de la tabla
+        DefaultTableModel model = new DefaultTableModel();
+        TableRowSorter<TableModel> ordenarAlfabeto = new TableRowSorter<TableModel>(model);
+        tabla.setRowSorter(ordenarAlfabeto);
+
+        model.addColumn("Codigo");
+        model.addColumn("Material");
+        model.addColumn("Objeto");
+        model.addColumn("Puntos");
+        
+        tabla.setModel(model);
+
+        //consulta DB
+        String sql = "select * from Residuos;";
+
+        String[] datos = new String[4];
+        Statement st = null;
+
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);                
+                model.addRow(datos);
+            }
+            tabla.setModel(model);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se pueden mostrar correctamente, error: " + e.toString());
+        }
+
     }
 
 }
