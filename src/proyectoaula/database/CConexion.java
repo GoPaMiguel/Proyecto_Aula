@@ -17,10 +17,10 @@ public class CConexion {
     Connection cx = null;
 
     String user = "root";
-    String password = "migue0218";
-    String bd = "ecofriendlydb1";
+    String password = "root";
+    String bd = "ecofriendlyDB";
     String ip = "localhost";
-    String puerto = "3306";
+    String puerto = "3307";
     String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd;
 
     public CConexion() {
