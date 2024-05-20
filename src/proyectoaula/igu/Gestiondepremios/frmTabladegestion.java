@@ -6,6 +6,8 @@ package proyectoaula.igu.Gestiondepremios;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import proyectoaula.data.Premio;
+import proyectoaula.data.Residuos;
 import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 /**
  *
@@ -18,11 +20,9 @@ public class frmTabladegestion extends javax.swing.JFrame {
      */
     public frmTabladegestion() {
         initComponents();
-        modelo=new DefaultTableModel();
-        modelo.addColumn("ID del premio");
-        modelo.addColumn("Nombre del Premio");
-        modelo.addColumn("Cantidad de puntos");
-        this.tabla.setModel(modelo);
+        Premio p = new Premio();
+        p.listar(tabla);
+        id.setEnabled(false);
     }
 
     /**
@@ -311,17 +311,9 @@ public class frmTabladegestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
-        String[]info=new String[3];
-        info[0]=id.getText();
-        info[1]=nombre.getText();
-        info[2]=puntos.getText();
-        modelo.addRow(info);
-        
-        id.setText("");
-        nombre.setText("");
-        puntos.setText("");       
-                
-        
+        Premio p = new Premio();
+        p.crearPremio(codigo, nombre, puntos);
+        p.listar(tabla);
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
