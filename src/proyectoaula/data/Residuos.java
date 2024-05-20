@@ -147,11 +147,13 @@ public class Residuos {
 
     }
 
-    public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id) {
+    public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id, JTextField codigo) {
         try {
             int fila = tabla.getSelectedRow();
+            System.out.println(fila);
             if (fila >= 0) {
                 id.setText((String) tabla.getValueAt(fila, 0));
+                codigo.setText((String) tabla.getValueAt(fila, 1));
                 materia.setText((String) tabla.getValueAt(fila, 2));
                 objeto.setText((String) tabla.getValueAt(fila, 3));
                 puntos.setText((String) tabla.getValueAt(fila, 4));
@@ -218,4 +220,55 @@ public class Residuos {
             JOptionPane.showMessageDialog(null, "Seleciona un resudio para eliminar");
         }
     }
+
+    public boolean validarcrear(JTextField codigo) {
+
+        String sql = "SELECT codigo FROM Residuos";
+
+        CConexion conexion = new CConexion();
+
+        Statement st = null;
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int n = 1;
+                if (rs.getString(n).equalsIgnoreCase(codigo.getText())) {
+                    JOptionPane.showMessageDialog(null, "Codigo ya existente", "Validar", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                n++;
+            }
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validador(JTextField codigo, JTextField material,JTextField objeto, JTextField puntos) {
+
+        if (codigo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Codigo no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (material.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo material no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if (objeto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo objeto no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Puntos no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
 }

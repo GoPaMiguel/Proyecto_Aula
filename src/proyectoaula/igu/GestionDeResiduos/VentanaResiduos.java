@@ -33,6 +33,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
         initComponents();
         ID.setEnabled(false);
         id.setEnabled(false);
+        Codigo.setEnabled(false);
     }
 
     /**
@@ -794,7 +795,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         pnCambiante.setSelectedIndex(0);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -814,7 +815,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
     private void btnEliminarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInternoActionPerformed
         // TODO add your handling code here:        
-        Residuos r = new Residuos();  
+        Residuos r = new Residuos();
         r.eliminar(id);
         r.listar(tbEliminar);
     }//GEN-LAST:event_btnEliminarInternoActionPerformed
@@ -822,8 +823,11 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private void btnModificarInternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarInternoActionPerformed
         // TODO add your handling code here:
         Residuos r = new Residuos();
-        r.modificarResiduosAdmin(ID, Material, Objeto, puntos);
-        r.listar(tbModificar);
+        if (r.validador(Codigo, Material, Objeto, puntos)) {
+            r.modificarResiduosAdmin(ID, Material, Objeto, puntos);
+            r.listar(tbModificar);
+            limpiar();
+        }
     }//GEN-LAST:event_btnModificarInternoActionPerformed
 
     private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped
@@ -880,7 +884,10 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:        
         Residuos r = new Residuos();
-        r.crearResiduo(txtCodigo, txtMaterial, txtObjeto, txtPuntos);
+        if (r.validador(txtCodigo, txtMaterial, txtObjeto, txtPuntos) && r.validarcrear(txtCodigo)) {
+            r.crearResiduo(txtCodigo, txtMaterial, txtObjeto, txtPuntos);
+            limpiar();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtPuntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPuntosKeyTyped
@@ -897,6 +904,13 @@ public class VentanaResiduos extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtObjetoKeyTyped
+
+    public void limpiar() {
+        txtCodigo.setText("");
+        txtMaterial.setText("");
+        txtObjeto.setText("");
+        txtPuntos.setText("");
+    }
 
     private void txtObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObjetoActionPerformed
         // TODO add your handling code here:
@@ -919,7 +933,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private void tbModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbModificarMouseClicked
         // TODO add your handling code here:
         Residuos r = new Residuos();
-        r.secionarResiduo(tbModificar, Material, Objeto, puntos, ID);
+        r.secionarResiduo(tbModificar, Material, Objeto, puntos, ID, Codigo);
     }//GEN-LAST:event_tbModificarMouseClicked
 
     private void idMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseClicked
@@ -938,7 +952,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
         PanelAdmon pa = new PanelAdmon();
         pa.setLocationRelativeTo(null);
         pa.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
     public void filtro() {
         filtro = txtBusqueda.getText();

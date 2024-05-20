@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -87,8 +88,13 @@ public class Premio {
             JOptionPane.showMessageDialog(null, "El campo Puntos no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-       
-        String sql = "SELECT codigo FROM Residuos";
+              
+        return true;
+    }
+    
+    public boolean validarcrear(JTextField id, JTextField codigo){
+        
+        String sql = "SELECT codigo FROM Premios";
 
         CConexion conexion = new CConexion();
 
@@ -110,6 +116,14 @@ public class Premio {
         }
         return true;
     }
+    
+     public void limpiarcampos(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
+        id.setText("");
+        codigo.setText("");
+        nombre.setText("");
+        puntos.setText("");        
+    }
+
 
     public void crearPremio(JTextField codigo, JTextField nombre, JTextField puntos) {
         CConexion conexion = new CConexion();

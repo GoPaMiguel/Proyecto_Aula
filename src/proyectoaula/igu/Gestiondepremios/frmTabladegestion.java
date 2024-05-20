@@ -87,6 +87,11 @@ public class frmTabladegestion extends javax.swing.JFrame {
                 nombreActionPerformed(evt);
             }
         });
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
+            }
+        });
 
         puntos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         puntos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,6 +104,11 @@ public class frmTabladegestion extends javax.swing.JFrame {
         jLabel4.setText("Codigo:");
 
         codigo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigoKeyTyped(evt);
+            }
+        });
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -328,9 +338,10 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
         Premio p = new Premio();
 
-        if (p.validador(id, codigo, nombre, puntos)) {
+        if (p.validador(id, codigo, nombre, puntos) && p.validarcrear(id, codigo)) {
             p.crearPremio(codigo, nombre, puntos);
             p.listar(tabla);
+            p.limpiarcampos(id, codigo, nombre, puntos);
         }
     }//GEN-LAST:event_btninsertarActionPerformed
 
@@ -340,6 +351,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
             Premio p = new Premio();
             p.eliminar(id);
             p.listar(tabla);
+            p.limpiarcampos(id, codigo, nombre, puntos);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccionar un Premio para eliminar");
         }
@@ -349,7 +361,9 @@ public class frmTabladegestion extends javax.swing.JFrame {
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:  
         Premio p = new Premio();
-        
+        p.limpiarcampos(id, codigo, nombre, puntos);
+        btninsertar.setEnabled(true);
+        codigo.setEnabled(true);
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -358,6 +372,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
             Premio p = new Premio();
             p.modificarPremioAdmin(id, codigo, nombre, puntos);
             p.listar(tabla);
+            p.limpiarcampos(id, codigo, nombre, puntos);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccionar un Premio para Modificar");
         }
@@ -382,13 +397,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         // TODO add your handling code here:
         Premio p = new Premio();
         p.selecionarPremio(tabla, id, codigo, nombre, puntos);
-        if (!id.getText().isEmpty()) {
-            btninsertar.setEnabled(false);
-            btnmodificar.setEnabled(true);
-            btneliminar.setEnabled(true);
-        } else {
-            btninsertar.setEnabled(true);            
-        }
+        codigo.setEnabled(false);
     }//GEN-LAST:event_tablaMouseClicked
 
     private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped
@@ -398,7 +407,24 @@ public class frmTabladegestion extends javax.swing.JFrame {
         if (!numero) {
             evt.consume();
         }
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
     }//GEN-LAST:event_puntosKeyTyped
+
+    private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_codigoKeyTyped
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreKeyTyped
 
     /**
      * @param args the command line arguments

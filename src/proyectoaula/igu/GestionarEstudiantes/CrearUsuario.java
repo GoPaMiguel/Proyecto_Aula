@@ -80,6 +80,18 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         jLabel7.setText("Genero:");
 
+        carrera.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carreraKeyTyped(evt);
+            }
+        });
+
+        apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoKeyTyped(evt);
+            }
+        });
+
         cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cedulaActionPerformed(evt);
@@ -88,6 +100,12 @@ public class CrearUsuario extends javax.swing.JFrame {
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cedulaKeyTyped(evt);
+            }
+        });
+
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
             }
         });
 
@@ -337,6 +355,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
         // TODO add your handling code here:
+        cedula.setEnabled(false);
         User u = new User();
         u.secionarUsuario(tablaUsuarios, id, cedula, nombre, apellido, carrera, cbgenero);
         if (!id.getText().isEmpty()) {
@@ -350,6 +369,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        cedula.setEnabled(true);
         User u = new User();
         u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
         if (id.getText().isEmpty()) {
@@ -375,6 +395,27 @@ public class CrearUsuario extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_cedulaKeyTyped
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_apellidoKeyTyped
+
+    private void carreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carreraKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carreraKeyTyped
 
     /**
      * @param args the command line arguments
