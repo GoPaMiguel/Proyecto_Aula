@@ -10,12 +10,15 @@ import proyectoaula.data.Premio;
 import proyectoaula.data.Residuos;
 import proyectoaula.igu.PanelAdmon;
 import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
+
 /**
  *
  * @author XTREME
  */
 public class frmTabladegestion extends javax.swing.JFrame {
+
     DefaultTableModel modelo;
+
     /**
      * Creates new form frmTabladegestion
      */
@@ -324,20 +327,18 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
-        int fila=tabla.getSelectedRow();
-        if (fila>=0){
-            modelo.removeRow(fila);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccionar Fila");
+        if (!id.getText().isEmpty()) {
+            Premio p = new Premio();
+            p.eliminar(id);
+            p.listar(tabla);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccionar un Premio para eliminar");
         }
+
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btneliminartodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminartodoActionPerformed
-        // TODO add your handling code here:
-        int fila=tabla.getRowCount();
-        for (int i =fila-1; i >=0; i--) {
-            modelo.removeRow(i);
-        }
+        // TODO add your handling code here:        
     }//GEN-LAST:event_btneliminartodoActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -345,10 +346,10 @@ public class frmTabladegestion extends javax.swing.JFrame {
         if (!id.getText().isEmpty()) {
             Premio p = new Premio();
             p.modificarPremioAdmin(id, codigo, nombre, puntos);
-            p.listar(tabla); 
+            p.listar(tabla);
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccionar un Premio para eliminar");
-        }        
+            JOptionPane.showMessageDialog(null, "Seleccionar un Premio para Modificar");
+        }
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
