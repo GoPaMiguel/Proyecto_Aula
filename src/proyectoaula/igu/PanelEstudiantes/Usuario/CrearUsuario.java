@@ -4,7 +4,10 @@
  */
 package proyectoaula.igu.PanelEstudiantes.Usuario;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import proyectoaula.data.User;
@@ -17,6 +20,7 @@ public class CrearUsuario extends javax.swing.JDialog {
 
     /**
      * Creates new form CrearUsuario
+     *
      * @param parent
      * @param modal
      */
@@ -35,14 +39,14 @@ public class CrearUsuario extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        fieldCareer = new javax.swing.JTextField();
+        carrera = new javax.swing.JTextField();
         cbGender = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        fieldName = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        fieldLastName = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        fieldId = new javax.swing.JTextField();
+        cedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -60,10 +64,15 @@ public class CrearUsuario extends javax.swing.JDialog {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Carrera:");
 
-        fieldCareer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fieldCareer.addActionListener(new java.awt.event.ActionListener() {
+        carrera.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldCareerActionPerformed(evt);
+                carreraActionPerformed(evt);
+            }
+        });
+        carrera.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carreraKeyTyped(evt);
             }
         });
 
@@ -78,35 +87,45 @@ public class CrearUsuario extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel5.setText("Genero:");
 
-        fieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fieldName.addActionListener(new java.awt.event.ActionListener() {
+        nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldNameActionPerformed(evt);
+                nombreActionPerformed(evt);
+            }
+        });
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        fieldLastName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fieldLastName.addActionListener(new java.awt.event.ActionListener() {
+        apellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldLastNameActionPerformed(evt);
+                apellidoActionPerformed(evt);
+            }
+        });
+        apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoKeyTyped(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel3.setText("Apellido:");
 
-        fieldId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fieldId.addActionListener(new java.awt.event.ActionListener() {
+        cedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldIdActionPerformed(evt);
+                cedulaActionPerformed(evt);
             }
         });
-        fieldId.addKeyListener(new java.awt.event.KeyAdapter() {
+        cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                fieldIdKeyTyped(evt);
+                cedulaKeyTyped(evt);
             }
         });
 
@@ -164,11 +183,11 @@ public class CrearUsuario extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
-                                    .addComponent(fieldCareer)
-                                    .addComponent(fieldName)
-                                    .addComponent(fieldLastName)
+                                    .addComponent(carrera)
+                                    .addComponent(nombre)
+                                    .addComponent(apellido)
                                     .addComponent(jLabel4)
-                                    .addComponent(fieldId)
+                                    .addComponent(cedula)
                                     .addComponent(jLabel5)
                                     .addComponent(cbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))))
@@ -186,19 +205,19 @@ public class CrearUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldCareer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(3, 3, 3)
-                .addComponent(fieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,103 +244,76 @@ public class CrearUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNameActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldNameActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
-    private void fieldLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldLastNameActionPerformed
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldLastNameActionPerformed
+    }//GEN-LAST:event_apellidoActionPerformed
 
-    private void fieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdActionPerformed
+    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
 
-    }//GEN-LAST:event_fieldIdActionPerformed
+    }//GEN-LAST:event_cedulaActionPerformed
 
-    private void fieldIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldIdKeyTyped
+    private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
         char tecla = evt.getKeyChar();
         if (!Character.isDigit(tecla)) {
             evt.consume();
         }
-    }//GEN-LAST:event_fieldIdKeyTyped
+    }//GEN-LAST:event_cedulaKeyTyped
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
 
-        boolean permiso = true;
-
-        permiso = !validador(fieldName, "El nombre es obligatorio");
-        permiso = !validador(fieldId, "La cedula es obligatoria");
-        permiso = !validador(fieldCareer, "La carrera es obligatoria");
-        permiso = !validador(fieldLastName, "El apellido es obligatorio");
-        Object genderselected = cbGender.getSelectedItem();
-        String gender = String.valueOf(genderselected);
-        if (gender.equals("Select")) {
-            JOptionPane.showMessageDialog(this, "El genero es obligatorio", "Validar", JOptionPane.ERROR_MESSAGE);
-            permiso = false;
-        } else {
-            permiso = true;
-        }
-        if (permiso) {
-
-            String name = fieldName.getText();
-            String cedula = fieldId.getText();
-            String apellido = fieldLastName.getText();
-            String genero = gender;
-            String carrera = fieldCareer.getText();
-
-            User estudiante = new User();
-
-            estudiante.nombre = name;
-            estudiante.apellido = apellido;
-            estudiante.numeroIdentificacion = cedula;
-            estudiante.genero = genero;
-            estudiante.carrera = carrera;
-            estudiante.puntos = 0;
-            estudiante.contraseña = cedula;
-
-            if (User.usuarios == null) {
-                User.usuarios = new HashMap<String, User>();
-            }
-            if (User.usuarios.containsKey(cedula)) {
-                String msj = "Cedula en uso " + cedula;
-                JOptionPane.showMessageDialog(this, msj);
+        User u = new User();
+        if (u.validador(cedula, nombre, apellido, carrera, cbGender) && u.validarCrear(cedula)) {
+            String genero = String.valueOf(cbGender.getSelectedItem().toString());
+            try {
+                u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), genero, carrera.getText());
                 limpiar();
-            } else {
-                User.usuarios.put(cedula, estudiante);
-                int nUsers = User.usuarios.size();
-                String msj = "Usuario creado con exito! "
-                        + "Numero actuales de usuarios: " + nUsers;
-                JOptionPane.showMessageDialog(this, msj);
-                this.dispose();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex.toString());
+
             }
         }
+
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void fieldCareerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCareerActionPerformed
+    private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldCareerActionPerformed
+    }//GEN-LAST:event_carreraActionPerformed
 
     private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbGenderActionPerformed
 
-    private boolean validador(JTextField campo, String mensaje) {
-
-        String dato = campo.getText();
-        dato = dato.trim();
-
-        if (dato.isEmpty()) {
-            JOptionPane.showMessageDialog(this, mensaje, "Validar", JOptionPane.ERROR_MESSAGE);
-            return false;
+    private void carreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carreraKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
         }
-        return true;
-    }
+    }//GEN-LAST:event_carreraKeyTyped
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isLetter(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_apellidoKeyTyped
 
     private void limpiar() {
-        fieldName.setText("");
-        fieldCareer.setText("");
-        fieldId.setText("");
-        fieldLastName.setText("");
-        fieldId.setText("");
+        nombre.setText("");
+        carrera.setText("");
+        cedula.setText("");
+        apellido.setText("");
+        cedula.setText("");
         cbGender.setSelectedIndex(0);
     }
 
@@ -368,12 +360,11 @@ public class CrearUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTextField apellido;
     private javax.swing.JButton btnConfirm;
+    private static javax.swing.JTextField carrera;
     private static javax.swing.JComboBox<String> cbGender;
-    private static javax.swing.JTextField fieldCareer;
-    private static javax.swing.JTextField fieldId;
-    private static javax.swing.JTextField fieldLastName;
-    private static javax.swing.JTextField fieldName;
+    private static javax.swing.JTextField cedula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -383,5 +374,6 @@ public class CrearUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private static javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

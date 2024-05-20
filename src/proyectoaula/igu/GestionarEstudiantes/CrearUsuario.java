@@ -306,7 +306,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         User u = new User();
-        if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero) && u.validarCrear(id, cedula)) {
+        if (u.validador(cedula, nombre, apellido, carrera, cbgenero) && u.validarCrear( cedula)) {
             String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
             if (id.getText().isEmpty()) {
                 try {
@@ -328,7 +328,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             btnModificar.setEnabled(true);
             User u = new User();
             try {
-                if (u.validador(id, cedula, nombre, apellido, carrera, cbgenero)) {
+                if (u.validador( cedula, nombre, apellido, carrera, cbgenero)) {
                     u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
                     u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
                     u.listarUsuarios(tablaUsuarios);
