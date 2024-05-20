@@ -1,9 +1,11 @@
 package proyectoaula.data;
 
+import java.awt.HeadlessException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -113,6 +115,7 @@ public class Residuos {
         TableRowSorter<TableModel> ordenarAlfabeto = new TableRowSorter<TableModel>(model);
         tabla.setRowSorter(ordenarAlfabeto);
 
+        model.addColumn("ID");
         model.addColumn("Codigo");
         model.addColumn("Material");
         model.addColumn("Objeto");
@@ -123,7 +126,7 @@ public class Residuos {
         //consulta DB
         String sql = "select * from Residuos;";
 
-        String[] datos = new String[4];
+        String[] datos = new String[5];
         Statement st = null;
 
         try {
@@ -134,6 +137,7 @@ public class Residuos {
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);                
+                datos[4] = rs.getString(5);                
                 model.addRow(datos);
             }
             tabla.setModel(model);
@@ -142,5 +146,20 @@ public class Residuos {
         }
 
     }
-
+     
+      public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id) {
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                id.setText((String) tabla.getValueAt(fila, 0));
+                materia.setText((String) tabla.getValueAt(fila, 2));
+                objeto.setText((String) tabla.getValueAt(fila, 1));
+                puntos.setText((String) tabla.getValueAt(fila, 4));               
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
 }
