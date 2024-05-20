@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.JTable;
 import javax.swing.table.*;
 import javax.swing.table.TableRowSorter;
-import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
+//import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 
 /**
  *
