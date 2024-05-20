@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectoaula.data.Premio;
 import proyectoaula.data.Residuos;
+import proyectoaula.igu.PanelAdmon;
 import proyectoaula.igu.PanelEstudiantes.MenuEstudiante;
 /**
  *
@@ -340,9 +341,14 @@ public class frmTabladegestion extends javax.swing.JFrame {
     }//GEN-LAST:event_btneliminartodoActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        // TODO add your handling code here:
-        
-        
+        // TODO add your handling code here:   
+        if (!id.getText().isEmpty()) {
+            Premio p = new Premio();
+            p.modificarPremioAdmin(id, codigo, nombre, puntos);
+            p.listar(tabla); 
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccionar un Premio para eliminar");
+        }        
     }//GEN-LAST:event_btnmodificarActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
@@ -355,11 +361,9 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
-        MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
-        me.setLocationRelativeTo(null);
-        me.setVisible(true);
-        this.dispose();
-
+        PanelAdmon pa = new PanelAdmon();
+        pa.setLocationRelativeTo(null);
+        pa.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
