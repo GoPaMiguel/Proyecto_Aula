@@ -89,6 +89,11 @@ public class frmTabladegestion extends javax.swing.JFrame {
         });
 
         puntos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        puntos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                puntosKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Codigo:");
@@ -320,10 +325,13 @@ public class frmTabladegestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
+
         Premio p = new Premio();
-        p.crearPremio(codigo, nombre, puntos);
-        p.listar(tabla);
-        
+
+        if (p.validador(id, codigo, nombre, puntos)) {
+            p.crearPremio(codigo, nombre, puntos);
+            p.listar(tabla);
+        }
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -340,7 +348,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
 
     private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
         // TODO add your handling code here:  
-        
+
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -374,6 +382,15 @@ public class frmTabladegestion extends javax.swing.JFrame {
         Premio p = new Premio();
         p.selecionarPremio(tabla, id, codigo, nombre, puntos);
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_puntosKeyTyped
 
     /**
      * @param args the command line arguments

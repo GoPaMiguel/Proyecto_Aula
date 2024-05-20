@@ -81,6 +81,11 @@ public class CrearUsuario extends javax.swing.JFrame {
                 cedulaActionPerformed(evt);
             }
         });
+        cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cedulaKeyTyped(evt);
+            }
+        });
 
         cbgenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Hombre", "Mujer" }));
 
@@ -334,6 +339,15 @@ public class CrearUsuario extends javax.swing.JFrame {
         pa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_cedulaKeyTyped
 
     /**
      * @param args the command line arguments
