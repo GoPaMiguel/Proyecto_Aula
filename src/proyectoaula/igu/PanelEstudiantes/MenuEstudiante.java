@@ -147,8 +147,7 @@ public class MenuEstudiante extends javax.swing.JDialog {
         this.dispose();
         PerfilEstudiante p = new PerfilEstudiante();
         p.setLocationRelativeTo(null);
-        p.setVisible(true);
-        
+        p.setVisible(true);        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
