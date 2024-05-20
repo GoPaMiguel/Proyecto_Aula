@@ -363,6 +363,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         Premio p = new Premio();
         p.limpiarcampos(id, codigo, nombre, puntos);
         btninsertar.setEnabled(true);
+        codigo.setEnabled(true);
     }//GEN-LAST:event_limpiarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -396,6 +397,7 @@ public class frmTabladegestion extends javax.swing.JFrame {
         // TODO add your handling code here:
         Premio p = new Premio();
         p.selecionarPremio(tabla, id, codigo, nombre, puntos);
+        codigo.setEnabled(false);
     }//GEN-LAST:event_tablaMouseClicked
 
     private void puntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_puntosKeyTyped

@@ -355,6 +355,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
         // TODO add your handling code here:
+        cedula.setEnabled(false);
         User u = new User();
         u.secionarUsuario(tablaUsuarios, id, cedula, nombre, apellido, carrera, cbgenero);
         if (!id.getText().isEmpty()) {
@@ -368,6 +369,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        cedula.setEnabled(true);
         User u = new User();
         u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
         if (id.getText().isEmpty()) {
