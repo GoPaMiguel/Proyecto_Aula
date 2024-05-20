@@ -700,10 +700,10 @@ public class VentanaResiduos extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
-        pnCambiante.setSelectedIndex(1);
-        actualizarTablaResiduos();
-        actualizarTablaResiduos2();
-        actualizarTablaResiduos3();
+        
+        Residuos r = new Residuos();
+        r.listar(TBListar);
+        pnCambiante.setSelectedIndex(1);        
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
