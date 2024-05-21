@@ -15,16 +15,20 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      * Creates new form PerfilEstudiante
      */
     public PerfilEstudiante() {
-        initComponents();             
-        int id = Login.getId(); 
+        initComponents();
+        int id = Login.getId();
         cedula.setEnabled(false);
         puntos.setEnabled(false);
-        if (id>0) {
+        if (id > 0) {
             User u = new User();
-            u.cargarPerfil(id, name, apellido, cedula , carrera, gender, contraseña, puntos);
+            u.cargarPerfil(id, name, apellido, cedula, carrera, gender, contraseña, puntos);
         }
-    
+
     }
+    
+
+
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -291,11 +295,12 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!contraseña.getText().isEmpty()) {
             User u = new User();
-        if (u.validador(cedula, name, apellido, carrera, gender)) {
-            u.modificarPerfil(Login.getId(), name, apellido, carrera, gender, contraseña);
-        }
-        }else{JOptionPane.showMessageDialog(null, "El Campo contraseña no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
-        
+            if (u.validador(cedula, name, apellido, carrera, gender)) {
+                u.modificarPerfil(Login.getId(), name, apellido, carrera, gender, contraseña);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El Campo contraseña no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
