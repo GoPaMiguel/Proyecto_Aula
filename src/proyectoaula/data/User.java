@@ -36,7 +36,6 @@ public class User {
     public String genero;
     public String contraseña;
     public int puntos = 0;
-    public static HashMap<String, User> usuarios;
 
     public String getNombre() {
         return nombre;
@@ -281,7 +280,6 @@ public class User {
                 JOptionPane.showMessageDialog(null, "Se elimino correctamente");
             } catch (HeadlessException | SQLException e) {
                 JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: " + e.toString());
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: Selcione un usuario");
@@ -315,6 +313,7 @@ public class User {
     }
 
     public void modificarPerfil(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero, JPasswordField contraseña) {
+
         setNombre(nombre.getText());
         setApellido(apellido.getText());
         setCarrera(carrera.getText());
@@ -340,7 +339,7 @@ public class User {
         }
     }
 
-    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField cedula, JTextField carrera, JComboBox genero, JPasswordField contraseña) {
+    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField cedula, JTextField carrera, JComboBox genero, JPasswordField contraseña, JTextField puntos) {
 
         CConexion conexion = new CConexion();
         String sql = "select * from usuarios where Usuarios.id=" + id + ";";
@@ -349,13 +348,13 @@ public class User {
         try {
             st = (Statement) conexion.conecarDB().createStatement();
             ResultSet rs = st.executeQuery(sql);
-            System.out.println("Aqui");
             while (rs.next()) {
                 nombre.setText(rs.getString("nombre"));
                 apellido.setText(rs.getString("apellido"));
                 carrera.setText(rs.getString("carrera"));
                 contraseña.setText(rs.getString("contraseña"));
                 cedula.setText(rs.getString("cedula"));
+                puntos.setText(rs.getString("puntos"));
                 genero.setSelectedItem(rs.getString("genero"));
             }
         } catch (SQLException e) {
@@ -364,10 +363,55 @@ public class User {
 
     }
 
+    public void selecionarTable(JTable tabla, JTextField puntos) {
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                puntos.setText(tabla.getValueAt(fila, 4).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
+
+    public void Calcular(JTextField peso, JTextField puntos, JTextField puntosCal) {
+        if (ValidorPuntos(peso, puntos)) {
+            try {
+                int total = Math.round((Integer.parseInt(peso.getText()) * Integer.parseInt(puntos.getText())));
+                System.out.println("total");
+                puntosCal.setText(String.valueOf(total));
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un valor");
+            }
+        }
+
+    }
+
+    public boolean ValidorPuntos(JTextField peso, JTextField puntos) {
+        if (peso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
+            return false;
+        }
+        if (puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
+            return false;
+        }
+        return true;
+    }
+
     public void reciclar(int id, int puntos) {
         CConexion cx = new CConexion();
         String sql = "update Usuarios set usuarios.puntos = ? where Usuarios.id=" + id + ";";
-
+        try {
+            CallableStatement cs = cx.conecarDB().prepareCall(sql);
+            cs.setInt(1, puntos);
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Agrego correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se Agrego los puntos, error: " + e.toString());
+        }
     }
 
 }

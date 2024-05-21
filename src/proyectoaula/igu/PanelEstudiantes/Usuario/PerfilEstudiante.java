@@ -18,9 +18,10 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         initComponents();             
         int id = Login.getId(); 
         cedula.setEnabled(false);
+        puntos.setEnabled(false);
         if (id>0) {
             User u = new User();
-            u.cargarPerfil(id, name, apellido, cedula , carrera, gender, contraseña);
+            u.cargarPerfil(id, name, apellido, cedula , carrera, gender, contraseña, puntos);
         }
     
     }
