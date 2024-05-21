@@ -270,7 +270,7 @@ public class CrearUsuario extends javax.swing.JDialog {
             String genero = String.valueOf(cbGender.getSelectedItem().toString());
             try {
                 u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), genero, carrera.getText());
-                limpiar();
+                this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex.toString());
 

@@ -14,14 +14,13 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      * Creates new form PerfilEstudiante
      */
     public PerfilEstudiante() {
-        initComponents();        
-        int id = Login.getUser();
-        
-        //name.setText(u.nombre);
-        //lastName.setText(u.apellido);
-        //ID.setText(u.numeroIdentificacion);
-        //career.setText(u.carrera);
-        //password.setText(u.contraseña);      
+        initComponents();             
+        int id = Login.getId();        
+        if (id>0) {
+            User u = new User();
+            u.cargarPerfil(id, name, apellido, carrera, gender, contraseña);
+        }
+    
     }
 
     /**
@@ -37,11 +36,11 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
-        lastName = new javax.swing.JTextField();
-        ID = new javax.swing.JTextField();
-        career = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
+        cedula = new javax.swing.JTextField();
+        carrera = new javax.swing.JTextField();
         gender = new javax.swing.JComboBox<>();
-        password = new javax.swing.JPasswordField();
+        contraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -66,21 +65,21 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("NOMBRE:");
 
-        lastName.addActionListener(new java.awt.event.ActionListener() {
+        apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameActionPerformed(evt);
+                apellidoActionPerformed(evt);
             }
         });
 
-        ID.addActionListener(new java.awt.event.ActionListener() {
+        cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDActionPerformed(evt);
+                cedulaActionPerformed(evt);
             }
         });
 
-        career.addActionListener(new java.awt.event.ActionListener() {
+        carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                careerActionPerformed(evt);
+                carreraActionPerformed(evt);
             }
         });
 
@@ -91,9 +90,9 @@ public class PerfilEstudiante extends javax.swing.JFrame {
             }
         });
 
-        password.addActionListener(new java.awt.event.ActionListener() {
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                contraseñaActionPerformed(evt);
             }
         });
 
@@ -150,11 +149,11 @@ public class PerfilEstudiante extends javax.swing.JFrame {
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(password)
+                                .addComponent(contraseña)
                                 .addComponent(gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(career)
-                                .addComponent(lastName)
-                                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(carrera)
+                                .addComponent(apellido)
+                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addGap(4, 4, 4)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,14 +178,14 @@ public class PerfilEstudiante extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(career, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,7 +193,7 @@ public class PerfilEstudiante extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(55, 55, 55)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +281,7 @@ public class PerfilEstudiante extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         modificar();
-        String msj = "Usuario editado con exito " + ID.getText();
+        String msj = "Usuario editado con exito " + cedula.getText();
         JOptionPane.showMessageDialog(this, msj);
         this.dispose();
         /*MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
@@ -298,33 +297,33 @@ public class PerfilEstudiante extends javax.swing.JFrame {
         this.dispose();*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameActionPerformed
+    }//GEN-LAST:event_apellidoActionPerformed
 
-    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
+    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IDActionPerformed
+    }//GEN-LAST:event_cedulaActionPerformed
 
     private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderActionPerformed
 
-    private void careerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_careerActionPerformed
+    private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_careerActionPerformed
+    }//GEN-LAST:event_carreraActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_contraseñaActionPerformed
     private static void modificar() {
         User user = new User();
         user.nombre = name.getText();
-        user.apellido = lastName.getText();
-        user.carrera = career.getText();
-        user.numeroIdentificacion = ID.getText();
+        user.apellido = apellido.getText();
+        user.carrera = carrera.getText();
+        user.numeroIdentificacion = cedula.getText();
         user.genero = String.valueOf(gender.getSelectedItem());
-        user.contraseña = password.getText();
+        user.contraseña = contraseña.getText();
         User.usuarios.put(user.numeroIdentificacion, user);
     }
     /**
@@ -332,8 +331,10 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JTextField ID;
-    private static javax.swing.JTextField career;
+    private static javax.swing.JTextField apellido;
+    private static javax.swing.JTextField carrera;
+    private static javax.swing.JTextField cedula;
+    private static javax.swing.JPasswordField contraseña;
     private static javax.swing.JComboBox<String> gender;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -349,9 +350,7 @@ public class PerfilEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private static javax.swing.JTextField lastName;
     private static javax.swing.JTextField name;
-    private static javax.swing.JPasswordField password;
     private javax.swing.JTextField puntos;
     // End of variables declaration//GEN-END:variables
 }

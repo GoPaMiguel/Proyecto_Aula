@@ -329,11 +329,11 @@ public class CrearUsuario extends javax.swing.JFrame {
             User u = new User();
             try {
                 if (u.validador( cedula, nombre, apellido, carrera, cbgenero)) {
-                    u.modificarUsuariosAdmin(id, cedula, nombre, apellido, carrera, cbgenero);
+                    u.modificarUsuario(Integer.parseInt(id.getText()),  nombre, apellido, carrera, cbgenero);
                     u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
                     u.listarUsuarios(tablaUsuarios);
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "No se Modifico correctamente, error: " + e);
             }
         } else {

@@ -235,26 +235,23 @@ public class User {
         }
     }
 
-    public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+    public void modificarUsuario(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
         setNombre(nombre.getText());
         setApellido(apellido.getText());
-        setNumeroIdentificacion(cedula.getText());
         setCarrera(carrera.getText());
         setGenero(genero.getSelectedItem().toString());
-        int codigo = Integer.parseInt(id.getText());
-        setId(codigo);
+        setId(id);
 
         CConexion conexion = new CConexion();
-        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?,  usuarios.cedula = ?, usuarios.carrera = ?, usuarios.genero = ? where Usuarios.id=?;";
+        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?, usuarios.carrera = ?, usuarios.genero = ? where Usuarios.id=?;";
 
         try {
             CallableStatement cs = conexion.conecarDB().prepareCall(sql);
             cs.setString(1, getNombre());
             cs.setString(2, getApellido());
-            cs.setString(3, getNumeroIdentificacion());
-            cs.setString(4, getCarrera());
-            cs.setString(5, getGenero());
-            cs.setInt(6, getId());
+            cs.setString(3, getCarrera());
+            cs.setString(4, getGenero());
+            cs.setInt(5, getId());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se modifico correctamente");
         } catch (SQLException e) {
@@ -302,7 +299,7 @@ public class User {
                 st = (Statement) cx.conecarDB().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                   rs.getString("cedula");
+                    rs.getString("cedula");
                     if (rs.getString("cedula").equals(usuario.getText())) {
                         setId(rs.getInt("id"));
                         return true;
@@ -315,6 +312,7 @@ public class User {
         }
         return false;
     }
+
     public boolean validarcontraseña(JTextField contraseña) {
         CConexion cx = new CConexion();
         if (contraseña.getText().isEmpty()) {
@@ -341,6 +339,57 @@ public class User {
             }
         }
         return false;
+    }
+
+    public void modificarPerfil(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero, JPasswordField contraseña) {
+        setNombre(nombre.getText());
+        setApellido(apellido.getText());
+        setCarrera(carrera.getText());
+        setGenero(genero.getSelectedItem().toString());
+        setContraseña(contraseña.getText());
+        setId(id);
+
+        CConexion conexion = new CConexion();
+        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?, usuarios.carrera = ?, usuarios.genero = ?, usuarios.contraseña = ? where Usuarios.id=?;";
+
+        try {
+            CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+            cs.setString(1, getNombre());
+            cs.setString(2, getApellido());
+            cs.setString(3, getCarrera());
+            cs.setString(4, getGenero());
+            cs.setString(5, getContraseña());
+            cs.setInt(6, getId());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se modifico correctamente, error: " + e.toString());
+        }               
+    }
+    
+    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero, JPasswordField contraseña){
+        
+        CConexion conexion = new CConexion();
+        String sql = "select * from usuarios where Usuarios.id=?;";
+        Statement st = null;
+ 
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            setNombre(rs.getString("nombre"));
+            setApellido(rs.getString("apellido"));
+            setCarrera(rs.getString("carrera"));
+            setGenero(rs.getString("genero"));
+            setContraseña(rs.getString("contraseña"));            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
+        }               
+        
+        nombre.setText(getNombre());
+        apellido.setText(getApellido());
+        carrera.setText(getCarrera());
+        contraseña.setText(getContraseña());
+        genero.setSelectedItem(getGenero());
     }
 
 }
