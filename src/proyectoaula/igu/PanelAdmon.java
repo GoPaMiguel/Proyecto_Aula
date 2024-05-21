@@ -186,6 +186,7 @@ public class PanelAdmon extends javax.swing.JFrame {
 
     private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         CrearUsuario crearUsuario = new CrearUsuario();
         crearUsuario.setLocationRelativeTo(null);
         crearUsuario.setVisible(true);
@@ -193,6 +194,7 @@ public class PanelAdmon extends javax.swing.JFrame {
 
     private void btnResiduosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResiduosActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         VentanaResiduos v = new VentanaResiduos();
         v.setLocationRelativeTo(null);
         v.setVisible(true);
@@ -200,6 +202,7 @@ public class PanelAdmon extends javax.swing.JFrame {
 
     private void btnRecompensasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecompensasActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         frmTabladegestion view= new frmTabladegestion();
         view.setLocationRelativeTo(null);
         view.setVisible(true);

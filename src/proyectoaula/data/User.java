@@ -36,7 +36,6 @@ public class User {
     public String genero;
     public String contraseña;
     public int puntos = 0;
-    public static HashMap<String, User> usuarios;
 
     public String getNombre() {
         return nombre;
@@ -235,26 +234,23 @@ public class User {
         }
     }
 
-    public void modificarUsuariosAdmin(JTextField id, JTextField cedula, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
+    public void modificarUsuario(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {
         setNombre(nombre.getText());
         setApellido(apellido.getText());
-        setNumeroIdentificacion(cedula.getText());
         setCarrera(carrera.getText());
         setGenero(genero.getSelectedItem().toString());
-        int codigo = Integer.parseInt(id.getText());
-        setId(codigo);
+        setId(id);
 
         CConexion conexion = new CConexion();
-        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?,  usuarios.cedula = ?, usuarios.carrera = ?, usuarios.genero = ? where Usuarios.id=?;";
+        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?, usuarios.carrera = ?, usuarios.genero = ? where Usuarios.id=?;";
 
         try {
             CallableStatement cs = conexion.conecarDB().prepareCall(sql);
             cs.setString(1, getNombre());
             cs.setString(2, getApellido());
-            cs.setString(3, getNumeroIdentificacion());
-            cs.setString(4, getCarrera());
-            cs.setString(5, getGenero());
-            cs.setInt(6, getId());
+            cs.setString(3, getCarrera());
+            cs.setString(4, getGenero());
+            cs.setInt(5, getId());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se modifico correctamente");
         } catch (SQLException e) {
@@ -284,26 +280,26 @@ public class User {
                 JOptionPane.showMessageDialog(null, "Se elimino correctamente");
             } catch (HeadlessException | SQLException e) {
                 JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: " + e.toString());
-
             }
         } else {
+            JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: Selcione un usuario");
+
         }
     }
 
-    public boolean validarUsuario(JTextField usuario) {
+    public boolean validarLogin(String usuario, String password) {
         CConexion cx = new CConexion();
-        if (usuario.getText().isEmpty()) {
+        if (usuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campos vacios, por favor llene todos los campos");
             return false;
         } else {
-            String sql = "SELECT cedula, id FROM USUARIOS;";
+            String sql = "SELECT cedula, id, contraseña FROM USUARIOS;";
             Statement st = null;
             try {
                 st = (Statement) cx.conecarDB().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                   rs.getString("cedula");
-                    if (rs.getString("cedula").equals(usuario.getText())) {
+                    if (usuario.equals(rs.getString("cedula")) && password.equals(rs.getString("contraseña"))) {
                         setId(rs.getInt("id"));
                         return true;
                     }
@@ -315,32 +311,107 @@ public class User {
         }
         return false;
     }
-    public boolean validarcontraseña(JTextField contraseña) {
-        CConexion cx = new CConexion();
-        if (contraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese una contraseña");
-            return false;
-        } else {
-            String sql = "SELECT cedula FROM USUARIOS";
-            Statement st = null;
+
+    public void modificarPerfil(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero, JPasswordField contraseña) {
+
+        setNombre(nombre.getText());
+        setApellido(apellido.getText());
+        setCarrera(carrera.getText());
+        setGenero(genero.getSelectedItem().toString());
+        setContraseña(contraseña.getText());
+        setId(id);
+
+        CConexion conexion = new CConexion();
+        String sql = "update Usuarios set usuarios.nombre = ?, usuarios.apellido = ?, usuarios.carrera = ?, usuarios.genero = ?, usuarios.contraseña = ? where Usuarios.id=?;";
+
+        try {
+            CallableStatement cs = conexion.conecarDB().prepareCall(sql);
+            cs.setString(1, getNombre());
+            cs.setString(2, getApellido());
+            cs.setString(3, getCarrera());
+            cs.setString(4, getGenero());
+            cs.setString(5, getContraseña());
+            cs.setInt(6, getId());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se modifico, error: " + e.toString());
+        }
+    }
+
+    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField cedula, JTextField carrera, JComboBox genero, JPasswordField contraseña, JTextField puntos) {
+
+        CConexion conexion = new CConexion();
+        String sql = "select * from usuarios where Usuarios.id=" + id + ";";
+        Statement st = null;
+
+        try {
+            st = (Statement) conexion.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                nombre.setText(rs.getString("nombre"));
+                apellido.setText(rs.getString("apellido"));
+                carrera.setText(rs.getString("carrera"));
+                contraseña.setText(rs.getString("contraseña"));
+                cedula.setText(rs.getString("cedula"));
+                puntos.setText(rs.getString("puntos"));
+                genero.setSelectedItem(rs.getString("genero"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
+        }
+
+    }
+
+    public void selecionarTable(JTable tabla, JTextField puntos) {
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                puntos.setText(tabla.getValueAt(fila, 4).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
+
+    public void Calcular(JTextField peso, JTextField puntos, JTextField puntosCal) {
+        if (ValidorPuntos(peso, puntos)) {
             try {
-                st = (Statement) cx.conecarDB().createStatement();
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    int n = 1;
-                    if (rs.getString(n).equals(contraseña.getText())) {
-                        System.out.println("SII");
-                        return true;
-                    } else {
-                        n++;
-                    }
-                }
-            } catch (HeadlessException | SQLException e) {
-                JOptionPane.showMessageDialog(null, "Cntraseña incorrecta");
-                return false;
+                int total = Math.round((Integer.parseInt(peso.getText()) * Integer.parseInt(puntos.getText())));
+                System.out.println("total");
+                puntosCal.setText(String.valueOf(total));
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un valor");
             }
         }
-        return false;
+
+    }
+
+    public boolean ValidorPuntos(JTextField peso, JTextField puntos) {
+        if (peso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
+            return false;
+        }
+        if (puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
+            return false;
+        }
+        return true;
+    }
+
+    public void reciclar(int id, int puntos) {
+        CConexion cx = new CConexion();
+        String sql = "update Usuarios set usuarios.puntos = ? where Usuarios.id=" + id + ";";
+        try {
+            CallableStatement cs = cx.conecarDB().prepareCall(sql);
+            cs.setInt(1, puntos);
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Agrego correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se Agrego los puntos, error: " + e.toString());
+        }
     }
 
 }

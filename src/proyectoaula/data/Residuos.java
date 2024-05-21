@@ -150,7 +150,6 @@ public class Residuos {
     public void secionarResiduo(JTable tabla, JTextField materia, JTextField objeto, JTextField puntos, JTextField id, JTextField codigo) {
         try {
             int fila = tabla.getSelectedRow();
-            System.out.println(fila);
             if (fila >= 0) {
                 id.setText((String) tabla.getValueAt(fila, 0));
                 codigo.setText((String) tabla.getValueAt(fila, 1));
@@ -270,5 +269,5 @@ public class Residuos {
 
         return true;
     }
-
+       
 }

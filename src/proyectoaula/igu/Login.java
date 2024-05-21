@@ -7,6 +7,7 @@ package proyectoaula.igu;
 import proyectoaula.igu.PanelEstudiantes.Usuario.CrearUsuario;
 import javax.swing.JOptionPane;
 import proyectoaula.data.User;
+import proyectoaula.igu.PanelEstudiantes.Menu;
 
 /**
  *
@@ -197,18 +198,35 @@ public class Login extends javax.swing.JFrame {
 
     public static int id;
 
-    public static int getUser() {
+    public static int getId() {
         return id;
     }
+
+    public static void setId(int id) {
+        Login.id = id;
+    }
+
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         User u = new User();
-        if (u.validarUsuario(FieldUser) && u.validarcontraseña(FieldPassword)) {
-            //MenuEstudiante me = new MenuEstudiante();
-            //me.setLocationRelativeTo(null);
-            //me.setVisible(true);
-            System.out.println("Credenciales correctas!!");
+        if (!FieldUser.getText().isEmpty() || !FieldPassword.getText().isEmpty()) {
+            if (FieldUser.getText().equals("sudo") && FieldPassword.getText().equals("sudo")) {
+                this.dispose();
+                PanelAdmon pa = new PanelAdmon();
+                pa.setLocationRelativeTo(null);
+                pa.setVisible(true);
+            } else if (u.validarLogin(FieldUser.getText(), FieldPassword.getText())) {
+                setId(u.getId());
+                Menu menu = new Menu(this, rootPaneCheckingEnabled);
+                menu.setLocationRelativeTo(null);
+                menu.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos vacios");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -222,6 +240,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here: 
+        this.dispose();
         CrearUsuario cu = new CrearUsuario(this, rootPaneCheckingEnabled);
         cu.setLocationRelativeTo(null);
         cu.setVisible(true);
