@@ -3,6 +3,7 @@ package proyectoaula.igu.PanelEstudiantes.Usuario;
 import javax.swing.JOptionPane;
 import proyectoaula.data.User;
 import proyectoaula.igu.Login;
+import proyectoaula.igu.PanelEstudiantes.Menu;
 
 /**
  *
@@ -15,10 +16,11 @@ public class PerfilEstudiante extends javax.swing.JFrame {
      */
     public PerfilEstudiante() {
         initComponents();             
-        int id = Login.getId();        
+        int id = Login.getId(); 
+        cedula.setEnabled(false);
         if (id>0) {
             User u = new User();
-            u.cargarPerfil(id, name, apellido, carrera, gender, contraseña);
+            u.cargarPerfil(id, name, apellido, cedula , carrera, gender, contraseña);
         }
     
     }
@@ -280,21 +282,19 @@ public class PerfilEstudiante extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        modificar();
-        String msj = "Usuario editado con exito " + cedula.getText();
-        JOptionPane.showMessageDialog(this, msj);
-        this.dispose();
-        /*MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
-        me.setLocationRelativeTo(null);
-        me.setVisible(true);*/
+        User u = new User();
+        if (u.validador(cedula, name, apellido, carrera, gender)) {
+            u.modificarPerfil(Login.getId(), name, apellido, carrera, gender, contraseña);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        /*MenuEstudiante me = new MenuEstudiante(this, rootPaneCheckingEnabled);
-        me.setLocationRelativeTo(null);
-        me.setVisible(true);
-        this.dispose();*/
+        Menu m = new Menu(this, rootPaneCheckingEnabled);
+        m.setLocationRelativeTo(null);
+        m.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
@@ -316,16 +316,7 @@ public class PerfilEstudiante extends javax.swing.JFrame {
     private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contraseñaActionPerformed
-    private static void modificar() {
-        User user = new User();
-        user.nombre = name.getText();
-        user.apellido = apellido.getText();
-        user.carrera = carrera.getText();
-        user.numeroIdentificacion = cedula.getText();
-        user.genero = String.valueOf(gender.getSelectedItem());
-        user.contraseña = contraseña.getText();
-        User.usuarios.put(user.numeroIdentificacion, user);
-    }
+
     /**
      * @param args the command line arguments
      */

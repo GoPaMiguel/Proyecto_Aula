@@ -284,57 +284,30 @@ public class User {
 
             }
         } else {
+            JOptionPane.showMessageDialog(null, "No se elimino correctamente, error: Selcione un usuario");
+
         }
     }
 
-    public boolean validarUsuario(JTextField usuario) {
+    public boolean validarLogin(String usuario, String password) {
         CConexion cx = new CConexion();
-        if (usuario.getText().isEmpty()) {
+        if (usuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campos vacios, por favor llene todos los campos");
             return false;
         } else {
-            String sql = "SELECT cedula, id FROM USUARIOS;";
+            String sql = "SELECT cedula, id, contraseña FROM USUARIOS;";
             Statement st = null;
             try {
                 st = (Statement) cx.conecarDB().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    rs.getString("cedula");
-                    if (rs.getString("cedula").equals(usuario.getText())) {
+                    if (usuario.equals(rs.getString("cedula")) && password.equals(rs.getString("contraseña"))) {
                         setId(rs.getInt("id"));
                         return true;
                     }
                 }
             } catch (HeadlessException | SQLException e) {
                 JOptionPane.showMessageDialog(null, "Usuario incorrecto");
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public boolean validarcontraseña(JTextField contraseña) {
-        CConexion cx = new CConexion();
-        if (contraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese una contraseña");
-            return false;
-        } else {
-            String sql = "SELECT cedula FROM USUARIOS";
-            Statement st = null;
-            try {
-                st = (Statement) cx.conecarDB().createStatement();
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    int n = 1;
-                    if (rs.getString(n).equals(contraseña.getText())) {
-                        System.out.println("SII");
-                        return true;
-                    } else {
-                        n++;
-                    }
-                }
-            } catch (HeadlessException | SQLException e) {
-                JOptionPane.showMessageDialog(null, "Cntraseña incorrecta");
                 return false;
             }
         }
@@ -363,33 +336,38 @@ public class User {
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se modifico correctamente");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No se modifico correctamente, error: " + e.toString());
-        }               
+            JOptionPane.showMessageDialog(null, "No se modifico, error: " + e.toString());
+        }
     }
-    
-    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero, JPasswordField contraseña){
-        
+
+    public void cargarPerfil(int id, JTextField nombre, JTextField apellido, JTextField cedula, JTextField carrera, JComboBox genero, JPasswordField contraseña) {
+
         CConexion conexion = new CConexion();
-        String sql = "select * from usuarios where Usuarios.id=?;";
+        String sql = "select * from usuarios where Usuarios.id=" + id + ";";
         Statement st = null;
- 
+
         try {
             st = (Statement) conexion.conecarDB().createStatement();
             ResultSet rs = st.executeQuery(sql);
-            setNombre(rs.getString("nombre"));
-            setApellido(rs.getString("apellido"));
-            setCarrera(rs.getString("carrera"));
-            setGenero(rs.getString("genero"));
-            setContraseña(rs.getString("contraseña"));            
+            System.out.println("Aqui");
+            while (rs.next()) {
+                nombre.setText(rs.getString("nombre"));
+                apellido.setText(rs.getString("apellido"));
+                carrera.setText(rs.getString("carrera"));
+                contraseña.setText(rs.getString("contraseña"));
+                cedula.setText(rs.getString("cedula"));
+                genero.setSelectedItem(rs.getString("genero"));
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
-        }               
-        
-        nombre.setText(getNombre());
-        apellido.setText(getApellido());
-        carrera.setText(getCarrera());
-        contraseña.setText(getContraseña());
-        genero.setSelectedItem(getGenero());
+        }
+
+    }
+
+    public void reciclar(int id, int puntos) {
+        CConexion cx = new CConexion();
+        String sql = "update Usuarios set usuarios.puntos = ? where Usuarios.id=" + id + ";";
+
     }
 
 }

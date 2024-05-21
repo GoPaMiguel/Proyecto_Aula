@@ -5,6 +5,7 @@
 package proyectoaula.igu.PanelEstudiantes;
 
 import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
+import proyectoaula.igu.Login;
 import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
 /**
@@ -36,6 +37,7 @@ public class Menu extends javax.swing.JDialog {
         btnPerfil = new javax.swing.JButton();
         btnRedimir = new javax.swing.JButton();
         btnReciclar = new javax.swing.JButton();
+        btnRedimir1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -72,6 +74,16 @@ public class Menu extends javax.swing.JDialog {
             }
         });
 
+        btnRedimir1.setBackground(new java.awt.Color(64, 145, 108));
+        btnRedimir1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRedimir1.setText("CERRAR SECCION");
+        btnRedimir1.setBorder(null);
+        btnRedimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedimir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -83,6 +95,7 @@ public class Menu extends javax.swing.JDialog {
             .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRedimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnReciclar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRedimir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +108,9 @@ public class Menu extends javax.swing.JDialog {
                 .addComponent(btnReciclar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRedimir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRedimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
@@ -123,11 +138,10 @@ public class Menu extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,6 +173,14 @@ public class Menu extends javax.swing.JDialog {
         reciclar.setLocationRelativeTo(null);
         reciclar.setVisible(true);
     }//GEN-LAST:event_btnReciclarActionPerformed
+
+    private void btnRedimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedimir1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRedimir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +228,7 @@ public class Menu extends javax.swing.JDialog {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnReciclar;
     private javax.swing.JButton btnRedimir;
+    private javax.swing.JButton btnRedimir1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

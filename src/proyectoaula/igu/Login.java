@@ -205,24 +205,28 @@ public class Login extends javax.swing.JFrame {
     public static void setId(int id) {
         Login.id = id;
     }
-            
-            
 
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         User u = new User();
-        if (FieldUser.getText().equals("sudo") && FieldPassword.getText().equals("sudo")) {
-            this.dispose();
-            PanelAdmon pa = new PanelAdmon();
-            pa.setLocationRelativeTo(null);
-            pa.setVisible(true);
-        } else if (u.validarUsuario(FieldUser) && u.validarcontraseña(FieldPassword)) {
-            setId(u.getId());
-            this.dispose();
-            Menu menu = new Menu(this, rootPaneCheckingEnabled);
-            menu.setLocationRelativeTo(null);
-            menu.setVisible(true);
+        if (!FieldUser.getText().isEmpty() || !FieldPassword.getText().isEmpty()) {
+            if (FieldUser.getText().equals("sudo") && FieldPassword.getText().equals("sudo")) {
+                this.dispose();
+                PanelAdmon pa = new PanelAdmon();
+                pa.setLocationRelativeTo(null);
+                pa.setVisible(true);
+            } else if (u.validarLogin(FieldUser.getText(), FieldPassword.getText())) {
+                setId(u.getId());
+                Menu menu = new Menu(this, rootPaneCheckingEnabled);
+                menu.setLocationRelativeTo(null);
+                menu.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos vacios");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

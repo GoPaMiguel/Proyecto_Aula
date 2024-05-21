@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import proyectoaula.data.User;
+import proyectoaula.igu.Login;
 
 /**
  *
@@ -264,16 +265,20 @@ public class CrearUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_cedulaKeyTyped
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-
+        
         User u = new User();
         if (u.validador(cedula, nombre, apellido, carrera, cbGender) && u.validarCrear(cedula)) {
             String genero = String.valueOf(cbGender.getSelectedItem().toString());
             try {
                 u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), genero, carrera.getText());
+                JOptionPane.showMessageDialog(null, "Se creo corretamente");
+                Login l = new Login();
+                l.setLocationRelativeTo(null);
+                l.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex.toString());
-
+                
             }
         }
 
@@ -307,7 +312,7 @@ public class CrearUsuario extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_apellidoKeyTyped
-
+    
     private void limpiar() {
         nombre.setText("");
         carrera.setText("");

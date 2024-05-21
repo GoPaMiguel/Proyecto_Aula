@@ -6,10 +6,7 @@ package proyectoaula.igu.GestionDeResiduos;
 
 import proyectoaula.data.AlmacenarResiduos;
 import proyectoaula.data.Residuos;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -21,14 +18,10 @@ public class VentanaReciclar extends javax.swing.JFrame {
 
     private AlmacenarResiduos almacenarResiduos;
     private TableRowSorter trsFiltro;
-    String filtro;
-    DefaultTableModel modelo;
-    /**
-     * Creates new form VentanaPrueba
-     */
     public VentanaReciclar() {
         initComponents();
-        almacenarResiduos = new AlmacenarResiduos();
+        Residuos r = new Residuos();
+        r.listar(tbResiduos);
     }
 
     /**
@@ -90,6 +83,11 @@ public class VentanaReciclar extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbResiduos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tbResiduosKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(tbResiduos);
@@ -222,12 +220,7 @@ public class VentanaReciclar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        actualizarTablaResiduos();
-        Residuos r = almacenarResiduos.obtenerResiduos().stream().findFirst().orElse(null);
-        if (r != null) {
-            etiResiduo.setText(r.getMaterial());
-        }
+        // TODO add your handling code here:        
     }//GEN-LAST:event_formWindowOpened
 
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
@@ -236,18 +229,7 @@ public class VentanaReciclar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
-        txtBusqueda.addKeyListener(new KeyAdapter() {
-
-            public void keyReleased(final KeyEvent e) {
-                String cadena = txtBusqueda.getText();
-                txtBusqueda.setText(cadena);
-                repaint();
-                filtro();
-  
-            }
-
-        });
-
+        
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -267,10 +249,10 @@ public class VentanaReciclar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void filtro() {
-        filtro = txtBusqueda.getText();
-        trsFiltro.setRowFilter(RowFilter.regexFilter(txtBusqueda.getText(), 0));
-    }
+    private void tbResiduosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbResiduosKeyTyped
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_tbResiduosKeyTyped
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
