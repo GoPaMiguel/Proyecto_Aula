@@ -307,6 +307,10 @@ public class CrearUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         User u = new User();
         if (u.validador(cedula, nombre, apellido, carrera, cbgenero) && u.validarCrear( cedula)) {
+            int cedulasize = cedula.getText().length();
+            if(cedulasize<8){
+                JOptionPane.showMessageDialog(null, "La cedula no es valida", "Validar", JOptionPane.ERROR_MESSAGE);
+                }else{ 
             String generoSelecionado = String.valueOf(cbgenero.getSelectedItem());
             if (id.getText().isEmpty()) {
                 try {
@@ -319,6 +323,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No se Creo correctamente, error: Limpie los campos ");
             }
+          }
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 
@@ -329,10 +334,15 @@ public class CrearUsuario extends javax.swing.JFrame {
             User u = new User();
             try {
                 if (u.validador( cedula, nombre, apellido, carrera, cbgenero)) {
+                    int cedulasize = cedula.getText().length();
+                    if(cedulasize<8){
+                JOptionPane.showMessageDialog(null, "La cedula no es valida", "Validar", JOptionPane.ERROR_MESSAGE);
+                }else{ 
                     u.modificarUsuario(Integer.parseInt(id.getText()),  nombre, apellido, carrera, cbgenero);
                     u.limpiarcampos(id, cedula, nombre, apellido, carrera, cbgenero);
                     u.listarUsuarios(tablaUsuarios);
                 }
+              }  
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "No se Modifico correctamente, error: " + e);
             }

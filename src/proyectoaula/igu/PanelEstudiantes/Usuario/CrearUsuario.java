@@ -288,6 +288,10 @@ public class CrearUsuario extends javax.swing.JDialog {
         
         User u = new User();
         if (u.validador(cedula, nombre, apellido, carrera, cbGender) && u.validarCrear(cedula)) {
+            int cedulasize = cedula.getText().length();
+            if(cedulasize<8){
+                JOptionPane.showMessageDialog(null, "La cedula no es valida", "Validar", JOptionPane.ERROR_MESSAGE);
+                }else{ 
             String genero = String.valueOf(cbGender.getSelectedItem().toString());
             try {
                 u.crearUsuario(nombre.getText(), apellido.getText(), cedula.getText(), genero, carrera.getText());
@@ -300,6 +304,7 @@ public class CrearUsuario extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "No se inserto correctamente, error: " + ex.toString());
                 
             }
+          }
         }
 
     }//GEN-LAST:event_btnConfirmActionPerformed
