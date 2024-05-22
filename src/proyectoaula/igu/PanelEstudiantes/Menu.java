@@ -4,8 +4,9 @@
  */
 package proyectoaula.igu.PanelEstudiantes;
 
-import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
+//import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
 import proyectoaula.igu.Login;
+import proyectoaula.igu.PanelEstudiantes.Reciclar.VentanaReciclar;
 import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
 /**
