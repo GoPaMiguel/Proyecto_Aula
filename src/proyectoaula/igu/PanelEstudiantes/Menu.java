@@ -7,6 +7,7 @@ package proyectoaula.igu.PanelEstudiantes;
 //import proyectoaula.igu.GestionDeResiduos.VentanaReciclar;
 import proyectoaula.igu.Login;
 import proyectoaula.igu.PanelEstudiantes.Reciclar.VentanaReciclar;
+import proyectoaula.igu.PanelEstudiantes.RedimirPuntos.Redimir;
 import proyectoaula.igu.PanelEstudiantes.Usuario.PerfilEstudiante;
 
 /**
@@ -64,6 +65,11 @@ public class Menu extends javax.swing.JDialog {
         btnRedimir.setForeground(new java.awt.Color(255, 255, 255));
         btnRedimir.setText("REDIMIR PUNTOS");
         btnRedimir.setBorder(null);
+        btnRedimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedimirActionPerformed(evt);
+            }
+        });
 
         btnReciclar.setBackground(new java.awt.Color(64, 145, 108));
         btnReciclar.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,6 +186,14 @@ public class Menu extends javax.swing.JDialog {
         l.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRedimir1ActionPerformed
+
+    private void btnRedimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedimirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Redimir redimir = new Redimir();
+        redimir.setLocationRelativeTo(null);
+        redimir.setVisible(true);                
+    }//GEN-LAST:event_btnRedimirActionPerformed
 
     /**
      * @param args the command line arguments

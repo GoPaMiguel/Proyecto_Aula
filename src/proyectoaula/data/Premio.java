@@ -25,21 +25,6 @@ public class Premio {
 
     }
 
-    public Premio(String codigo, String nombredelpremio, String cantidaddepuntos) {
-        this.codigo = codigo;
-        this.nombredelpremio = nombredelpremio;
-        this.cantidaddepuntos = cantidaddepuntos;
-    }
-
-    @Override
-
-    public String toString() {
-        return "Premio{"
-                + "codigo='" + codigo + '\''
-                + ", nombredelpremio='" + nombredelpremio + '\''
-                + ", cantidaddepuntos='" + cantidaddepuntos + '\'';
-    }
-
     public int getId() {
         return id;
     }
@@ -71,7 +56,7 @@ public class Premio {
     public void setCantidaddepuntos(String cantidaddepuntos) {
         this.cantidaddepuntos = cantidaddepuntos;
     }
-    
+
     public boolean validador(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
 
         if (codigo.getText().isEmpty()) {
@@ -88,12 +73,12 @@ public class Premio {
             JOptionPane.showMessageDialog(null, "El campo Puntos no puede estar vacio", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-              
+
         return true;
     }
-    
-    public boolean validarcrear(JTextField id, JTextField codigo){
-        
+
+    public boolean validarcrear(JTextField id, JTextField codigo) {
+
         String sql = "SELECT codigo FROM Premios";
 
         CConexion conexion = new CConexion();
@@ -116,14 +101,13 @@ public class Premio {
         }
         return true;
     }
-    
-     public void limpiarcampos(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
+
+    public void limpiarcampos(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
         id.setText("");
         codigo.setText("");
         nombre.setText("");
-        puntos.setText("");        
+        puntos.setText("");
     }
-
 
     public void crearPremio(JTextField codigo, JTextField nombre, JTextField puntos) {
         CConexion conexion = new CConexion();
@@ -200,6 +184,20 @@ public class Premio {
         }
     }
 
+    public void selecionarReiclar(JTable tabla, JTextField nombre, JTextField puntos) {
+        try {
+            int fila = tabla.getSelectedRow();
+            if (fila >= 0) {
+                nombre.setText((String) tabla.getValueAt(fila, 2));
+                puntos.setText((String) tabla.getValueAt(fila, 3));
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no selecionada");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Eror de seleccion, error: " + e.toString());
+        }
+    }
+
     public void modificarPremioAdmin(JTextField id, JTextField codigo, JTextField nombre, JTextField puntos) {
 
         setCodigo(codigo.getText());
@@ -243,5 +241,5 @@ public class Premio {
             JOptionPane.showMessageDialog(null, "Seleciona un resudio para eliminar");
         }
     }
-
+   
 }
