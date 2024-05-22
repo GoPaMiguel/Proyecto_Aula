@@ -293,7 +293,7 @@ public class User {
             JOptionPane.showMessageDialog(null, "Campos vacios, por favor llene todos los campos");
             return false;
         } else {
-            String sql = "SELECT cedula, id, contraseña FROM USUARIOS;";
+            String sql = "SELECT cedula, id, contraseña, puntos FROM USUARIOS;";
             Statement st = null;
             try {
                 st = (Statement) cx.conecarDB().createStatement();
@@ -344,7 +344,6 @@ public class User {
         CConexion conexion = new CConexion();
         String sql = "select * from usuarios where Usuarios.id=" + id + ";";
         Statement st = null;
-
         try {
             st = (Statement) conexion.conecarDB().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -354,20 +353,25 @@ public class User {
                 carrera.setText(rs.getString("carrera"));
                 contraseña.setText(rs.getString("contraseña"));
                 cedula.setText(rs.getString("cedula"));
-                puntos.setText(rs.getString("puntos"));
+                int punto = rs.getInt("puntos");
+                puntos.setText(String.valueOf(punto));
                 genero.setSelectedItem(rs.getString("genero"));
+                setPuntos(punto);
+
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
         }
-
     }
 
     public void selecionarTable(JTable tabla, JTextField puntos) {
         try {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
+                int p = getPuntos();
+                System.out.println(p);
                 puntos.setText(tabla.getValueAt(fila, 4).toString());
+                //puntosExi.setText(String.valueOf(getPuntos()));
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no selecionada");
             }
@@ -380,13 +384,11 @@ public class User {
         if (ValidorPuntos(peso, puntos)) {
             try {
                 int total = Math.round((Integer.parseInt(peso.getText()) * Integer.parseInt(puntos.getText())));
-                System.out.println("total");
                 puntosCal.setText(String.valueOf(total));
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Ingrese un valor");
             }
         }
-
     }
 
     public boolean ValidorPuntos(JTextField peso, JTextField puntos) {
@@ -401,12 +403,12 @@ public class User {
         return true;
     }
 
-    public void reciclar(int id, int puntos) {
+    public void reciclar(int id, int puntos, int puntoExi) {
         CConexion cx = new CConexion();
         String sql = "update Usuarios set usuarios.puntos = ? where Usuarios.id=" + id + ";";
         try {
             CallableStatement cs = cx.conecarDB().prepareCall(sql);
-            cs.setInt(1, puntos);
+            cs.setInt(1, (puntos + puntoExi));
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se Agrego correctamente");
         } catch (SQLException e) {
@@ -414,4 +416,20 @@ public class User {
         }
     }
 
+    public void obtenerPuntosDB(int id) {
+        CConexion cx = new CConexion();        
+        String sql = "select puntos from usuarios where Usuarios.id=" + id + ";";
+        Statement st = null;
+
+        try {
+            st = (Statement) cx.conecarDB().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {               
+                int punto = rs.getInt("puntos");               
+                setPuntos(punto);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
+        }        
+    }
 }

@@ -197,7 +197,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_FieldUserActionPerformed
 
     public static int id;
-
+    
     public static int getId() {
         return id;
     }
