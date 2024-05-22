@@ -4,13 +4,8 @@
  */
 package proyectoaula.igu.GestionDeResiduos;
 
-import proyectoaula.data.AlmacenarResiduos;
 import proyectoaula.data.Residuos;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import java.awt.HeadlessException;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -19,10 +14,6 @@ import proyectoaula.igu.PanelAdmon;
 
 public class VentanaResiduos extends javax.swing.JFrame {
 
-    AlmacenarResiduos almacenamiento = new AlmacenarResiduos();
-    private TableRowSorter trsFiltro;
-    String filtro;
-    DefaultTableModel modelo;
 
     /**
      * Creates new form Principal
@@ -861,15 +852,12 @@ public class VentanaResiduos extends javax.swing.JFrame {
                 String cadena = txtBusqueda.getText();
                 txtBusqueda.setText(cadena);
                 repaint();
-                filtro();
             }
 
         });
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
-        trsFiltro = new TableRowSorter(tbModificar.getModel());
-        tbModificar.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -953,10 +941,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
         pa.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
-    public void filtro() {
-        filtro = txtBusqueda.getText();
-        trsFiltro.setRowFilter(RowFilter.regexFilter(txtBusqueda.getText(), 0));
-    }
 
     /**
      * @param args the command line arguments
@@ -1000,117 +984,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
         });
     }
 
-    private boolean validarDatosEnCampo(JTextField campo, String mensaje) {
-        String dato = campo.getText();
-        dato = dato.trim();
-        if (dato.isEmpty()) {
-            campo.requestFocus();
-            JOptionPane.showMessageDialog(this, mensaje, "Validar", JOptionPane.ERROR_MESSAGE);
-            campo.setToolTipText("");
-            return false;
-        }
-        return true;
+   
 
-    }
-
-    private void eliminarFilaSeleccionada() {
-        try {
-            int filaSeleccionada = tbEliminar.getSelectedRow();
-            if (filaSeleccionada != -1) {
-                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar la fila seleccionada?", "Eliminar fila", JOptionPane.YES_NO_OPTION);
-                if (confirmacion == JOptionPane.YES_OPTION) {
-                    DefaultTableModel modelo4 = (DefaultTableModel) tbEliminar.getModel();
-                    String CodigoEncontrado = tbEliminar.getValueAt(filaSeleccionada, 0).toString();
-                    almacenamiento.eliminarResiduo(CodigoEncontrado);
-                    modelo4.removeRow(filaSeleccionada);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
-            }
-        } catch (HeadlessException e) {
-            System.out.println("Error al eliminar residuo: " + e.getMessage());
-        }
-    }
-
-    private void modificarFila() {
-        int filaSeleccionada = tbModificar.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            String codigoActual = tbModificar.getValueAt(filaSeleccionada, 0).toString();
-            String materialModificado = Material.getText();
-            String objetoModificado = Objeto.getText();
-            int puntosModificado = Integer.parseInt(puntos.getText());
-
-            limpiarcampoModificar();
-
-            tbModificar.setValueAt(materialModificado, filaSeleccionada, 1);
-            tbModificar.setValueAt(objetoModificado, filaSeleccionada, 2);
-            tbModificar.setValueAt(puntosModificado, filaSeleccionada, 3);
-
-            var ResiduoActual = almacenamiento.buscarResiduo(codigoActual);
-            almacenamiento.modificarResiduo(ResiduoActual, materialModificado, objetoModificado, puntosModificado);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
-        }
-    }
-
-    public void limpiarcampoModificar() {
-        Material.setText("");
-        Objeto.setText("");
-        puntos.setText("");
-    }
-
-    private void actualizarTablaResiduos() {
-        try {
-            DefaultTableModel modelo1 = (DefaultTableModel) TBListar.getModel();
-            modelo1.setRowCount(0);
-
-            List<Residuos> residuos = almacenamiento.obtenerResiduos();
-            if (!residuos.isEmpty()) {
-                for (Residuos residuo : residuos) {
-                    Object[] fila = {residuo.getCodigo(), residuo.getMaterial(), residuo.getObjeto(), residuo.getPuntos()};
-                    modelo1.addRow(fila);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error al obtener residuos: " + e.getMessage());
-        }
-    }
-
-    private void actualizarTablaResiduos2() {
-        try {
-            DefaultTableModel modelo2 = (DefaultTableModel) tbModificar.getModel();
-            modelo2.setRowCount(0);
-
-            List<Residuos> residuos = almacenamiento.obtenerResiduos();
-
-            if (!residuos.isEmpty()) {
-                for (Residuos residuo : residuos) {
-                    Object[] fila = {residuo.getCodigo(), residuo.getMaterial(), residuo.getObjeto(), residuo.getPuntos()};
-                    modelo2.addRow(fila);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error al obtener residuos: " + e.getMessage());
-        }
-    }
-
-    private void actualizarTablaResiduos3() {
-        try {
-            DefaultTableModel modelo3 = (DefaultTableModel) tbEliminar.getModel();
-            modelo3.setRowCount(0);
-            List<Residuos> residuos = almacenamiento.obtenerResiduos();
-
-            if (!residuos.isEmpty()) {
-                for (Residuos residuo : residuos) {
-                    Object[] fila = {residuo.getCodigo(), residuo.getMaterial(), residuo.getObjeto(), residuo.getPuntos()};
-                    modelo3.addRow(fila);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error al obtener residuos: " + e.getMessage());
-        }
-    }
-
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Codigo;
