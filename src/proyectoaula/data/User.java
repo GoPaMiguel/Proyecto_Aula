@@ -368,10 +368,7 @@ public class User {
         try {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
-                int p = getPuntos();
-                System.out.println(p);
                 puntos.setText(tabla.getValueAt(fila, 4).toString());
-                //puntosExi.setText(String.valueOf(getPuntos()));
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no selecionada");
             }
@@ -382,22 +379,24 @@ public class User {
 
     public void Calcular(JTextField peso, JTextField puntos, JTextField puntosCal) {
         if (ValidorPuntos(peso, puntos)) {
+            int total = 0;
             try {
-                int total = Math.round((Integer.parseInt(peso.getText()) * Integer.parseInt(puntos.getText())));
-                puntosCal.setText(String.valueOf(total));
+                total = Math.round((Integer.parseInt(peso.getText()) * Integer.parseInt(puntos.getText())));
+                if (total <= 0) {
+                    JOptionPane.showMessageDialog(null, "Solo acepta numero mayores a 0");
+                } else {
+                    puntosCal.setText(String.valueOf(total));
+                }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingrese un valor");
+                JOptionPane.showMessageDialog(null, "Solo acepta numero mayores a 0");
             }
         }
     }
 
     public boolean ValidorPuntos(JTextField peso, JTextField puntos) {
-        if (peso.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
-            return false;
-        }
-        if (puntos.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione un Residuo");
+
+        if (peso.getText().isEmpty() || puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione un Peso (KG) y selecione una tabla");
             return false;
         }
         return true;
@@ -423,7 +422,6 @@ public class User {
             CallableStatement cs = cx.conecarDB().prepareCall(sql);
             cs.setInt(1, (getPuntos()));
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Se Reclamo correctamente");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se Agrego los puntos, error: " + e.toString());
         }

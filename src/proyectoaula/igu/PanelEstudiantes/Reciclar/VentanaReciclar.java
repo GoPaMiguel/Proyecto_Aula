@@ -322,12 +322,17 @@ public class VentanaReciclar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (peso.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese el peso de los residuos a reciclar");
+        if (peso.getText().isEmpty() || puntos.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el peso de los residuos a reciclar y seleciona una tabla");
         } else {
             User u = new User();
             u.Calcular(peso, puntos, puntosCal);
-            u.reciclar(Login.getId(), Integer.parseInt(puntosCal.getText()), Integer.parseInt(PuntosExistentes.getText()));
+            try {                
+            int puntosTotal = Math.round(Integer.parseInt(puntosCal.getText()));
+            u.reciclar(Login.getId(), puntosTotal, Integer.parseInt(PuntosExistentes.getText()));
+            } catch (Exception e) {
+                
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
