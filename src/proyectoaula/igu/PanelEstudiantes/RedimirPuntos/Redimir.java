@@ -4,6 +4,7 @@
  */
 package proyectoaula.igu.PanelEstudiantes.RedimirPuntos;
 
+import javax.swing.JOptionPane;
 import proyectoaula.data.Premio;
 import proyectoaula.data.User;
 import proyectoaula.igu.Login;
@@ -146,8 +147,12 @@ public class Redimir extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        u.calcularPuntosrestantes(puntosExis, puntosNece);
-        u.cambiarPuntos(Login.getId());
+        if (!puntosNece.getText().isEmpty()) {
+            u.calcularPuntosrestantes(puntosExis, puntosNece);
+            u.cambiarPuntos(Login.getId());
+        } else {
+            JOptionPane.showMessageDialog(null, "Elige un premio");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

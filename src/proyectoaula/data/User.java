@@ -422,6 +422,8 @@ public class User {
             CallableStatement cs = cx.conecarDB().prepareCall(sql);
             cs.setInt(1, (getPuntos()));
             cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Consiguio correctamente el premio");
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se Agrego los puntos, error: " + e.toString());
         }
@@ -444,21 +446,18 @@ public class User {
         }
     }
 
-    public boolean calcularPuntosrestantes(JTextField puntosActu, JTextField puntoNec) {
+    public void calcularPuntosrestantes(JTextField puntosActu, JTextField puntoNec) {
         int tusPuntos = Integer.parseInt(puntosActu.getText());
         int puntosNecesarios = Integer.parseInt(puntoNec.getText());
 
         if (tusPuntos == puntosNecesarios) {
             setPuntos(0);
-            return true;
         } else if (tusPuntos > puntosNecesarios) {
             int total = (tusPuntos - puntosNecesarios);
             setPuntos(total);
-            return true;
         } else if (tusPuntos < puntosNecesarios) {
             JOptionPane.showMessageDialog(null, "No te tienes suficientes puntos");
         }
-        return false;
     }
 
 }
