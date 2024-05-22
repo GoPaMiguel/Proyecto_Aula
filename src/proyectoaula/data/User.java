@@ -416,20 +416,51 @@ public class User {
         }
     }
 
+    public void cambiarPuntos(int id) {
+        CConexion cx = new CConexion();
+        String sql = "update Usuarios set usuarios.puntos = ? where Usuarios.id=" + id + ";";
+        try {
+            CallableStatement cs = cx.conecarDB().prepareCall(sql);
+            cs.setInt(1, (getPuntos()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Reclamo correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se Agrego los puntos, error: " + e.toString());
+        }
+    }
+
     public void obtenerPuntosDB(int id) {
-        CConexion cx = new CConexion();        
+        CConexion cx = new CConexion();
         String sql = "select puntos from usuarios where Usuarios.id=" + id + ";";
         Statement st = null;
 
         try {
             st = (Statement) cx.conecarDB().createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {               
-                int punto = rs.getInt("puntos");               
+            while (rs.next()) {
+                int punto = rs.getInt("puntos");
                 setPuntos(punto);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se puede acceder correctamente, error: " + e.toString());
-        }        
+        }
     }
+
+    public boolean calcularPuntosrestantes(JTextField puntosActu, JTextField puntoNec) {
+        int tusPuntos = Integer.parseInt(puntosActu.getText());
+        int puntosNecesarios = Integer.parseInt(puntoNec.getText());
+
+        if (tusPuntos == puntosNecesarios) {
+            setPuntos(0);
+            return true;
+        } else if (tusPuntos > puntosNecesarios) {
+            int total = (tusPuntos - puntosNecesarios);
+            setPuntos(total);
+            return true;
+        } else if (tusPuntos < puntosNecesarios) {
+            JOptionPane.showMessageDialog(null, "No te tienes suficientes puntos");
+        }
+        return false;
+    }
+
 }
