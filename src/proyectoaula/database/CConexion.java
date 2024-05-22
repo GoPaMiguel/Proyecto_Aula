@@ -18,7 +18,7 @@ public class CConexion {
 
     String user = "root";
     String password = "migue0218";
-    String bd = "ecofriendlyDB1";
+    String bd = "ecofriendlyDB";
     String ip = "localhost";
     String puerto = "3306";
     String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd;

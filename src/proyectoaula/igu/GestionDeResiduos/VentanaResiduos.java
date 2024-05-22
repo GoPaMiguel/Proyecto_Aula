@@ -67,12 +67,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         pnModificar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtBusqueda = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbModificar = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        btnBusqueda = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         Material = new javax.swing.JTextField();
@@ -446,14 +443,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         jLabel2.setText("MODIFICAR RESIDUO");
 
-        jLabel3.setText("Busqueda :");
-
-        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBusquedaKeyTyped(evt);
-            }
-        });
-
         tbModificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -487,13 +476,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbModificar);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/img-modi.png"))); // NOI18N
-
-        btnBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectoaula/igu/GestionDeResiduos/Iconos/search.png"))); // NOI18N
-        btnBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusquedaActionPerformed(evt);
-            }
-        });
 
         jLabel15.setText("Material:");
 
@@ -577,17 +559,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
                                     .addComponent(puntos)
                                     .addComponent(Codigo)))))
                     .addGroup(pnModificarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnModificarLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pnModificarLayout.createSequentialGroup()
-                                .addComponent(txtBusqueda)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addGap(13, 13, 13))
@@ -597,15 +571,9 @@ public class VentanaResiduos extends javax.swing.JFrame {
             .addGroup(pnModificarLayout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(pnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnModificarLayout.createSequentialGroup()
-                        .addGroup(pnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(46, 46, 46)
                         .addGroup(pnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
                             .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -628,6 +596,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnModificarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110))))
         );
@@ -830,9 +799,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     }//GEN-LAST:event_puntosKeyTyped
 
     private void ObjetoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ObjetoKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_ObjetoKeyTyped
 
     private void ObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObjetoActionPerformed
@@ -840,25 +807,8 @@ public class VentanaResiduos extends javax.swing.JFrame {
     }//GEN-LAST:event_ObjetoActionPerformed
 
     private void MaterialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaterialKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+       
     }//GEN-LAST:event_MaterialKeyTyped
-
-    private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
-        txtBusqueda.addKeyListener(new KeyAdapter() {
-
-            public void keyReleased(final KeyEvent e) {
-                String cadena = txtBusqueda.getText();
-                txtBusqueda.setText(cadena);
-                repaint();
-            }
-
-        });
-    }//GEN-LAST:event_btnBusquedaActionPerformed
-
-    private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
-    }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
@@ -880,16 +830,13 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private void txtPuntosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPuntosKeyTyped
         int key = evt.getKeyChar();
         boolean numero = key >= 48 && key <= 57;
-
         if (!numero) {
             evt.consume();
         }
     }//GEN-LAST:event_txtPuntosKeyTyped
 
     private void txtObjetoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObjetoKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+
     }//GEN-LAST:event_txtObjetoKeyTyped
 
     public void limpiar() {
@@ -904,9 +851,7 @@ public class VentanaResiduos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtObjetoActionPerformed
 
     private void txtMaterialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_txtMaterialKeyTyped
 
     private void txtMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialActionPerformed
@@ -994,7 +939,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private javax.swing.JTextField Material;
     private javax.swing.JTextField Objeto;
     private javax.swing.JTable TBListar;
-    private javax.swing.JButton btnBusqueda;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminarInterno;
     private javax.swing.JButton btnGuardar;
@@ -1022,7 +966,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1042,7 +985,6 @@ public class VentanaResiduos extends javax.swing.JFrame {
     private javax.swing.JTextField puntos;
     private javax.swing.JTable tbEliminar;
     private javax.swing.JTable tbModificar;
-    private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtMaterial;
     private javax.swing.JTextField txtObjeto;

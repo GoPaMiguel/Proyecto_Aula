@@ -212,26 +212,32 @@ public class User {
     }
 
     public boolean validarCrear(JTextField cedula) {
-        String sql = "SELECT cedula FROM USUARIOS";
-        CConexion conexion = new CConexion();
+        if (cedula.getText().length() == 8 || cedula.getText().length() == 10) {
+            String sql = "SELECT cedula FROM USUARIOS";
+            CConexion conexion = new CConexion();
 
-        Statement st = null;
-        try {
-            st = (Statement) conexion.conecarDB().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                int n = 1;
-                if (rs.getString(n).equalsIgnoreCase(cedula.getText())) {
-                    JOptionPane.showMessageDialog(null, "Cedula ya existente", "Validar", JOptionPane.ERROR_MESSAGE);
-                    return false;
+            Statement st = null;
+            try {
+                st = (Statement) conexion.conecarDB().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    int n = 1;
+                    if (rs.getString(n).equalsIgnoreCase(cedula.getText())) {
+                        JOptionPane.showMessageDialog(null, "Cedula ya existente", "Validar", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                    n++;
                 }
-                n++;
+                return true;
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
-            return true;
-        } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro en la base de datos", "Validar", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese Cedula Valida, con 8 o 10 caracteres", "Validar", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+
     }
 
     public void modificarUsuario(int id, JTextField nombre, JTextField apellido, JTextField carrera, JComboBox genero) {

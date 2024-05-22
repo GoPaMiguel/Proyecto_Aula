@@ -407,24 +407,15 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cedulaKeyTyped
 
     private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
-        // TODO add your handling code here:
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        // TODO add your handling code here:        
     }//GEN-LAST:event_nombreKeyTyped
 
     private void apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoKeyTyped
-        // TODO add your handling code here:
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        // TODO add your handling code here:       
     }//GEN-LAST:event_apellidoKeyTyped
 
     private void carreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carreraKeyTyped
-        // TODO add your handling code here:
-        if (!Character.isLetter(evt.getKeyChar())) {
-            evt.consume();
-        }
+        // TODO add your handling code here:        
     }//GEN-LAST:event_carreraKeyTyped
 
     /**
